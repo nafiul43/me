@@ -1,12 +1,26 @@
 ---
-import Home from '../components/modules/Home.astro';
-import Layout from '../layouts/Layout.astro';
+import Experience from "@components/modules/Experience.astro";
+import ThemeToggle from "@components/theme-toggole.astro";
+import Home from "../components/modules/Home.astro";
+import Project from "../components/modules/Projects.astro";
+import Sidebar from "../components/sidebar/index.astro";
+import Layout from "../layouts/Layout.astro";
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-	<main class="w-full max-w-5xl space-y-4 px-2 py-3 sm:space-y-6 sm:px-8 sm:py-12 lg:space-y-8 lg:py-20">
-		<Home />
-	</main>
+  <main
+    class="w-full flex flex-1 xl:flex-row flex-col max-w-5xl space-y-4 px-2 py-3 sm:space-y-6 sm:px-8 sm:py-12 lg:space-y-8 lg:py-20 relative gap-x-0 xl:gap-x-4 gap-y-4 xl:gap-y-0"
+  >
+    <div class="flex flex-col flex-1 gap-y-4">
+      <Home />
+      <Experience />
+      <Project />
+    </div>
+
+    <Sidebar className="sticky top-0" />
+  </main>
+
+  <ThemeToggle />
 </Layout>

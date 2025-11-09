@@ -1,0 +1,78 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<nav
+  id="sidebar"
+  class:list={[
+    "xl:flex flex-row xl:flex-col w-max h-fit p-2 rounded-lg gap-2 bg-white dark:bg-gray-800 shadow-md sticky",
+  ]}
+>
+  {
+    [
+      {
+        title: "Home",
+        slug: "profile",
+        icon: "mdi:user",
+      },
+      {
+        title: "Work Experience",
+        slug: "experience",
+        icon: "mdi:briefcase",
+      },
+      {
+        title: "Projects",
+        slug: "projects",
+        icon: "mdi:rocket-launch",
+      },
+      {
+        title: "Education",
+        slug: "education",
+        icon: "mdi:school",
+      },
+      {
+        title: "Skills",
+        slug: "skills",
+        icon: "mdi:shimmer",
+      },
+    ].map((item) => (
+      <a
+        href={`#${item.slug}`}
+        class="inline-flex h-10 w-10 items-center justify-center rounded-lg transition"
+        aria-label={`${item.title} section`}
+        data-tooltip={item.title}
+        data-tooltip-placement="left"
+      >
+        <Icon name={item.icon} size={28} />
+      </a>
+    ))
+  }
+</nav>
+
+<script>
+  const sidebarItems = [
+    ...document.getElementById("sidebar")!.children,
+  ] as HTMLAnchorElement[];
+
+  sidebarItems.forEach((item) => {
+    item.addEventListener("click", () => {
+      sidebarItems.forEach((item) => {
+        item.removeAttribute("aria-current");
+      });
+
+      item.setAttribute("aria-current", "page");
+    });
+  });
+</script>
+
+<style>
+  @reference "@styles/global.css";
+
+  a[aria-current="page"] {
+    @apply bg-primary-700 text-white;
+  }
+
+  a:not([aria-current="page"]) {
+    @apply text-gray-400 hover:bg-primary-700 hover:text-white dark:text-gray-200;
+  }
+</style>

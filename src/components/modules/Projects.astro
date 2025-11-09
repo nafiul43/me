@@ -1,0 +1,101 @@
+---
+const projects = [
+  {
+    title: "klikit Cloud",
+    description: "klikit Cloud",
+    company: "klikit PTE Ltd",
+    teamSize: 6,
+    date: "January 2023 - September 2025",
+    type: "Web App",
+    features: [
+      "Helps to manage digital, delivery, and in-store orders from a single dashboard. Accessible through both desktop and mobile devices",
+      "Control and manage multiple menus 5,040x faster than before. Toggle out of stock items, set prices, and schedule items availability",
+      "Get visibility, monitoring, and data for multiple online channels, in just one place",
+      "Comprehensive visibility of business performance through analytics dashboard. Ability to compare how your brands, branches, and channels are doing",
+      "Localization support in 10 languages",
+    ],
+    techStack: [
+      {
+        title: "React.js",
+        icon: "mdi:react",
+      },
+      {
+        title: "TailwindCSS",
+        icon: "mdi:tailwind",
+      },
+      {
+        title: "Redux Saga",
+        icon: "mdi:redux",
+      },
+      {
+        title: "Formik",
+        icon: "mdi:formik",
+      },
+      {
+        title: "Apexcharts",
+        icon: "mdi:apexcharts",
+      },
+      {
+        title: "Stripe",
+        icon: "mdi:stripe",
+      },
+      {
+        title: "Xendit",
+        icon: "mdi:xendit",
+      },
+      {
+        title: "Socket.io",
+        icon: "mdi:socket",
+      },
+      {
+        title: "Vite",
+        icon: "mdi:vite",
+      },
+    ],
+  },
+];
+---
+
+<section
+  id="projects"
+  class="flex flex-col gap-x-6 w-full p-6 rounded-xl bg-white dark:bg-gray-800 shadow-sm gap-y-4"
+>
+  <h1 class="text-gray-900 dark:text-gray-100 font-extrabold text-3xl">
+    Projects
+  </h1>
+
+  <div class="flex flex-col gap-y-4 divide-gray-100 divide-y-2">
+    {
+      projects.map((project) => {
+        return (
+          <div class="flex flex-col gap-y-4">
+            <h4 class="text-gray-900 dark:text-gray-100 font-extrabold text-xl">
+              {project.title}
+            </h4>
+            <div class="grid grid-cols-2 gap-x-4 text-base">
+              <div class="flex gap-x-2">
+                <span>Company</span>
+                <p class="font-medium text-gray-900 dark:text-gray-100">
+                  {project.company}
+                </p>
+              </div>
+              <div class="flex gap-x-2">
+                <span>Team Size</span>
+                <p class="font-medium text-gray-900 dark:text-gray-100">
+                  {project.teamSize}
+                </p>
+              </div>
+            </div>
+            <div class="dark:text-gray-300 text-xs font-normal text-gray-500 sm:text-base description mb-4">
+              <ul class="list-disc ml-6">
+                {project.features.map((feature) => {
+                  return <li>{feature}</li>;
+                })}
+              </ul>
+            </div>
+          </div>
+        );
+      })
+    }
+  </div>
+</section>
