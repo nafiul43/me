@@ -1,5 +1,6 @@
 ---
 import ProfilePhoto from "@assets/PP.jpg";
+import SectionCard from "@components/section-card.astro";
 import { Icon } from "astro-icon/components";
 import { Image } from "astro:assets";
 
@@ -31,10 +32,7 @@ const links = [
 ];
 ---
 
-<section
-  id="home"
-  class="flex gap-x-6 w-full p-6 rounded-xl bg-white dark:bg-gray-800 shadow-sm"
->
+<SectionCard slug="profile" className="scroll-mt-16">
   <div class="flex items-center gap-4 sm:flex-col">
     <Image
       format="webp"
@@ -43,13 +41,16 @@ const links = [
       loading="eager"
       width={320}
       height={320}
-      alt="Profile Photo"
+      alt="Nafiul Islam Tony - Frontend Lead and Full Stack Engineer profile photo"
       class="rounded-lg h-24 max-w-none md:h-52 md:w-52 sm:h-36 sm:w-36 w-24"
     />
     <a
-      href="#"
-      class="w-full font-medium items-center justify-center active:translate-y-px bg-primary-900 cursor-pointer focus:outline-none h-10 hover:bg-primary-700 inline-flex px-4 rounded-md select-none shadow-sm text-base text-white"
-      >Download Resume</a
+      href="https://mefolio.s3.eu-north-1.amazonaws.com/resume/Nafiul+Islam+Tony.pdf"
+      class="w-full font-medium items-center justify-center active:translate-y-px bg-primary-700 cursor-pointer focus:outline-none h-10 hover:bg-primary-700 inline-flex px-4 rounded-md select-none shadow-sm text-base text-white"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Download Nafiul Islam Tony's Resume PDF"
+      download>Download Resume</a
     >
   </div>
   <div class="flex w-full flex-col gap-5">
@@ -72,7 +73,7 @@ const links = [
             links.map((link) => (
               <a
                 href={link.href}
-                class="flex items-center bg-gray-100 hover:bg-primary-700 rounded active:translate-y-px dark:bg-gray-600 dark:text-gray-200 focus:outline-none h-7 justify-center text-gray-400 w-7"
+                class="flex items-center bg-gray-100 hover:bg-primary-700 hover:text-white rounded active:translate-y-px dark:bg-gray-600 dark:text-gray-200 focus:outline-none h-7 justify-center text-gray-400 w-7"
                 aria-label={`${link.slug} section`}
                 data-tooltip={link.slug}
                 data-tooltip-placement="bottom"
@@ -125,4 +126,4 @@ const links = [
       </p>
     </div>
   </div>
-</section>
+</SectionCard>

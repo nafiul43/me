@@ -4,9 +4,7 @@ import { Icon } from "astro-icon/components";
 
 <nav
   id="sidebar"
-  class:list={[
-    "xl:flex flex-row xl:flex-col w-max h-fit p-2 rounded-lg gap-2 bg-white dark:bg-gray-800 shadow-md sticky",
-  ]}
+  class="flex-col gap-2 bg-white dark:bg-gray-800 h-fit hidden p-2 rounded-lg shadow-md w-max xl:flex sticky mt-4 top-8"
 >
   {
     [
@@ -21,14 +19,14 @@ import { Icon } from "astro-icon/components";
         icon: "mdi:briefcase",
       },
       {
-        title: "Projects",
-        slug: "projects",
-        icon: "mdi:rocket-launch",
-      },
-      {
         title: "Education",
         slug: "education",
         icon: "mdi:school",
+      },
+      {
+        title: "Projects",
+        slug: "projects",
+        icon: "mdi:rocket-launch",
       },
       {
         title: "Skills",
@@ -40,6 +38,7 @@ import { Icon } from "astro-icon/components";
         href={`#${item.slug}`}
         class="inline-flex h-10 w-10 items-center justify-center rounded-lg transition"
         aria-label={`${item.title} section`}
+        data-slug={item.slug}
         data-tooltip={item.title}
         data-tooltip-placement="left"
       >
@@ -73,6 +72,6 @@ import { Icon } from "astro-icon/components";
   }
 
   a:not([aria-current="page"]) {
-    @apply text-gray-400 hover:bg-primary-700 hover:text-white dark:text-gray-200;
+    @apply text-gray-400 hover:bg-primary-700 hover:text-white dark:text-gray-200 dark:hover:text-white;
   }
 </style>

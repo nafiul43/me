@@ -1,85 +1,11 @@
 ---
-import enosisLogo from "@assets/companies/enosis.webp";
-import klikitLogo from "@assets/companies/klikit.webp";
-import pathaoLogo from "@assets/companies/pathao.webp";
-import widespaceLogo from "@assets/companies/widespace.png";
+import SectionCard from "@components/section-card.astro";
 import { Image } from "astro:assets";
 
-const jobs = [
-  {
-    company: "klikit PTE Ltd",
-    position: "Lead, Frontend Engineering",
-    logo: klikitLogo,
-    logoAlt: "klikit PTE Ltd",
-    logoFit: "cover",
-    date: "January 2023 - September 2025",
-    responsibilities: [
-      "Collaborated with the design team to architect and scale a high-performing UI component library using React, TailwindCSS, StoryBook & Rollup, cutting UI dev time by 30% across 5 teams through consistent, reusable, and responsive styling",
-      "Led rapid development of core features, including launching Webshop (ordering WebApp with payments) in just 7 weeks and delivering a Reservation MVP in 2 weeks, enabling the company to test and scale new revenue streams quickly in the market",
-      "Leveraged Copilot and Windsurf to accelerate feature delivery while optimizing component performance and maintaining scalable, high-load-ready codebases, ensuring seamless integration across multiple applications",
-      "Translated business goals into scalable frontend solutions, accelerating release cycles and improving stakeholder satisfaction",
-      "Mentored 10 engineers, improving onboarding efficiency by 40% with reviews, documentation, and coding practices",
-    ],
-  },
-  {
-    company: "Pathao Ltd.",
-    position: "Staff Software Engineer",
-    logo: pathaoLogo,
-    logoAlt: "Pathao Ltd.",
-    logoFit: "cover",
-    date: "January 2022 - December 2022",
-    responsibilities: [
-      "Relaunched Pathao Points Loyalty program, achieved a performance boost by reducing initial load from 7 seconds to 200ms",
-      "Co-designed and rolled out Pathao PayLater with the backend teams on a tight 3-week timeline, driving strong adoption among the first 10k target users and securing Lighthouse scores above 90",
-      "Optimized dashboard load times by 35% through performance-focused state management in VueJS, VueX, and lazy loading",
-      "Coached junior developers and facilitated knowledge sharing across teams, reducing onboarding ramp-up time by 40%",
-    ],
-  },
-  {
-    company: "Pathao Ltd.",
-    position: "Senior Software Engineer",
-    logo: pathaoLogo,
-    logoAlt: "Pathao Ltd.",
-    logoFit: "cover",
-    date: "July 2018 - December 2021",
-    responsibilities: [
-      "Led a 5-engineer full-stack team to build and launch Pathao Shop, reaching 5M+ users within 6 months",
-      "Created a Vue-powered UI library, adopted in 20+ dashboards, ensuring consistency and accelerating delivery",
-      "Partnered with backend and QA to stabilize large-scale deployments, ensuring reliable services across various products",
-      "Delivered consumer-facing features in collaboration with design teams, improving user retention by 15%",
-    ],
-  },
-  {
-    company: "Widespace Bangladesh Ltd.",
-    position: "Software Engineer",
-    logo: widespaceLogo,
-    logoAlt: "Widespace Bangladesh Ltd.",
-    logoFit: "cover",
-    date: "July 2014 - June 2018",
-    responsibilities: [
-      "Delivered high-performance ad-tech features in React & Redux, serving millions of ad impressions across global clients",
-      "Collaborated with Swedish teams, shipping features in Laravel & VueJS, helping to optimize rendering & load times by 20%",
-    ],
-  },
-  {
-    company: "Enosis Solutions",
-    position: "Software Engineer",
-    logo: enosisLogo,
-    logoAlt: "Enosis Solutions",
-    logoFit: "contain",
-    date: "July 2012 - June 2014",
-    responsibilities: [
-      "Developed hybrid applications with jQuery Mobile & Apache Cordova, delivering on fast approaching deadlines",
-      "Primary developer of iPass Kiosk built in WPF, which was an instant hit & was heavily used in the client’s headquarters",
-    ],
-  },
-];
+import { JOBS } from "@data/jobs";
 ---
 
-<section
-  id="experience"
-  class="flex flex-col gap-x-6 w-full p-6 rounded-xl bg-white dark:bg-gray-800 shadow-sm gap-y-4"
->
+<SectionCard slug="experience" className="scroll-mt-8 gap-y-4 flex-col">
   <h1 class="text-gray-900 dark:text-gray-100 font-extrabold text-3xl">
     Work Experience
   </h1>
@@ -88,19 +14,19 @@ const jobs = [
     class="flex flex-col gap-y-4 divide-gray-100 dark:divide-gray-700 divide-y-2"
   >
     {
-      jobs.map((job) => {
+      JOBS.map((job) => {
         return (
           <div class="flex flex-col gap-y-4">
             <div class="flex gap-x-4 mt-4">
               <Image
                 format="webp"
-                fit={job.logoFit}
-                src={job.logo}
+                fit={job.logo.fit || "cover"}
+                src={job.logo.src}
                 loading="eager"
                 width={100}
                 height={100}
-                alt={job.logoAlt}
-                class="border border-gray-200 rounded-lg w-12 h-12 max-w-none md:h-16 md:w-16 sm:h-12 sm:w-12"
+                alt={job.company}
+                class="border border-gray-200 dark:border-none rounded-lg w-12 h-12 max-w-none md:h-16 md:w-16 sm:h-12 sm:w-12"
               />
               <div class="gap-y-1">
                 <h3 class="text-gray-900 dark:text-gray-100 font-extrabold text-xl -mt-1">
@@ -126,4 +52,4 @@ const jobs = [
       })
     }
   </div>
-</section>
+</SectionCard>

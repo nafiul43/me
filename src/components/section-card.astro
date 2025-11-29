@@ -1,0 +1,51 @@
+---
+export interface Props {
+  slug?: string;
+  className?: string;
+}
+
+const { slug, className } = Astro.props;
+---
+
+<section
+  id={slug}
+  data-type="section"
+  class:list={[
+    "flex gap-x-6 w-full p-6 rounded-xl bg-white dark:bg-gray-800 shadow-sm",
+    className,
+  ]}
+>
+  <slot />
+</section>
+
+<script>
+  import throttle from "@utils/throttle";
+
+  const sections = [...document.querySelectorAll('[data-type="section"]')];
+  const sidebarLinks = document.querySelectorAll("#sidebar a");
+
+  const isInUpperView = (section: Element) =>
+    section.getBoundingClientRect().bottom >= window.innerHeight / 3;
+
+  const updateHash = () => {
+    const currentSection = sections.find(isInUpperView);
+
+    if (currentSection) {
+      history.replaceState(null, "", `#${currentSection.id}`);
+
+      sidebarLinks.forEach((link) => {
+        link.removeAttribute("aria-current");
+      });
+
+      const activeLink = document.querySelector(
+        `#sidebar a[href="#${currentSection.id}"]`
+      );
+      if (activeLink) {
+        activeLink.setAttribute("aria-current", "page");
+      }
+    }
+  };
+
+  document.addEventListener("DOMContentLoaded", throttle(updateHash, 200));
+  document.addEventListener("scroll", throttle(updateHash, 200));
+</script>
