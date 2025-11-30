@@ -8,6 +8,14 @@ type Job = {
   };
   date: string;
   responsibilities: string[];
+  links?: {
+    slug: string;
+    href: string;
+    icon: string;
+    title: string;
+    value: string;
+    target: string;
+  }[];
 }
 
 export const JOBS: Job[] = [
@@ -25,6 +33,21 @@ export const JOBS: Job[] = [
       "Translated business goals into scalable frontend solutions, accelerating release cycles and improving stakeholder satisfaction",
       "Mentored 10 engineers, improving onboarding efficiency by 40% with reviews, documentation, and coding practices",
     ],
+    links: [{
+      slug: "linkedin",
+      href: "https://www.linkedin.com/company/klikit/",
+      icon: "simple-icons:linkedin",
+      title: "LinkedIn",
+      value: "klikit",
+      target: "_blank",
+    }, {
+      slug: "website",
+      href: "https://www.klikit.io",
+      icon: "mdi:web",
+      title: "Website",
+      value: "https://www.klikit.io",
+      target: "_blank",
+    }],
   },
   {
     company: "Pathao Ltd.",
@@ -39,6 +62,21 @@ export const JOBS: Job[] = [
       "Optimized dashboard load times by 35% through performance-focused state management in VueJS, VueX, and lazy loading",
       "Coached junior developers and facilitated knowledge sharing across teams, reducing onboarding ramp-up time by 40%",
     ],
+    links: [{
+      slug: "linkedin",
+      href: "https://www.linkedin.com/company/pathao/",
+      icon: "simple-icons:linkedin",
+      title: "LinkedIn",
+      value: "pathao",
+      target: "_blank",
+    }, {
+      slug: "website",
+      href: "https://www.pathao.com",
+      icon: "mdi:web",
+      title: "Website",
+      value: "https://www.pathao.com",
+      target: "_blank",
+    }],
   },
   {
     company: "Pathao Ltd.",
@@ -53,6 +91,21 @@ export const JOBS: Job[] = [
       "Partnered with backend and QA to stabilize large-scale deployments, ensuring reliable services across various products",
       "Delivered consumer-facing features in collaboration with design teams, improving user retention by 15%",
     ],
+    links: [{
+      slug: "linkedin",
+      href: "https://www.linkedin.com/company/pathao/",
+      icon: "simple-icons:linkedin",
+      title: "LinkedIn",
+      value: "pathao",
+      target: "_blank",
+    }, {
+      slug: "website",
+      href: "https://www.pathao.com",
+      icon: "mdi:web",
+      title: "Website",
+      value: "https://www.pathao.com",
+      target: "_blank",
+    }],
   },
   {
     company: "Widespace Bangladesh Ltd. (Acquired by Azerion AB)",
@@ -65,6 +118,21 @@ export const JOBS: Job[] = [
       "Delivered high-performance ad-tech features in React & Redux, serving millions of ad impressions across global clients",
       "Collaborated with Swedish teams, shipping features in Laravel & VueJS, helping to optimize rendering & load times by 20%",
     ],
+    links: [{
+      slug: "x",
+      href: "https://x.com/WidespaceMobile",
+      icon: "simple-icons:x",
+      title: "X",
+      value: "widespace",
+      target: "_blank",
+    }, {
+      slug: "website",
+      href: "https://www.azerion.com/european-digital-gaming-and-monetisation-company-azerion-expands-nordic-presence-with-new-swedish-acquisition-delta-projects/#:~:text=acquisition%20of%20adtech%20companies%20Widespace%20and%20Sellbranch,Azerion%20already%20enjoys%20a%20strong%20presence%20not",
+      icon: "mdi:web",
+      title: "Website",
+      value: "https://www.azerion.com/european-digital-gaming-and-monetisation-company-azerion-expands-nordic-presence-with-new-swedish-acquisition-delta-projects/#:~:text=acquisition%20of%20adtech%20companies%20Widespace%20and%20Sellbranch,Azerion%20already%20enjoys%20a%20strong%20presence%20not",
+      target: "_blank",
+    }],
   },
   {
     company: "Enosis Solutions",
@@ -77,5 +145,20 @@ export const JOBS: Job[] = [
       "Developed hybrid applications with jQuery Mobile & Apache Cordova, delivering on fast approaching deadlines",
       "Primary developer of iPass Kiosk built in WPF, which was an instant hit & was heavily used in the client’s headquarters",
     ],
+    links: [{
+      slug: "linkedin",
+      href: "https://www.linkedin.com/company/enosis-solutions/",
+      icon: "simple-icons:linkedin",
+      title: "LinkedIn",
+      value: "enosis-solutions",
+      target: "_blank",
+    }, {
+      slug: "website",
+      href: "https://www.enosisbd.com/",
+      icon: "mdi:web",
+      title: "Website",
+      value: "https://www.enosisbd.com/",
+      target: "_blank",
+    }],
   },
 ];

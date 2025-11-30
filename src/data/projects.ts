@@ -25,7 +25,6 @@ import {
   LOCALIZATION,
   MONGODB,
   MYSQL,
-  NEXTJS,
   NODEJS,
   POSTGRESQL,
   PYTHON,
@@ -35,6 +34,7 @@ import {
   ROLLUP,
   SAP_CRYSTAL_REPORTING,
   SASS,
+  SENTRY,
   SOAP,
   SOCKETIO,
   STRIPE,
@@ -71,6 +71,7 @@ export const PROJECTS = [
       XENDIT,
       SOCKETIO,
       LOCALIZATION,
+      SENTRY,
     ],
   },
   {
@@ -91,6 +92,7 @@ export const PROJECTS = [
       XENDIT,
       SOCKETIO,
       LOCALIZATION,
+      SENTRY,
     ],
   },
   {
@@ -112,11 +114,7 @@ export const PROJECTS = [
       SOCKETIO,
       LOCALIZATION,
       FRAMEWORK7,
-      FORMIK,
-      STRIPE,
-      XENDIT,
-      SOCKETIO,
-      LOCALIZATION,
+      SENTRY,
     ],
   },
   {
@@ -138,11 +136,7 @@ export const PROJECTS = [
       SOCKETIO,
       LOCALIZATION,
       FRAMEWORK7,
-      FORMIK,
-      STRIPE,
-      XENDIT,
-      SOCKETIO,
-      LOCALIZATION,
+      SENTRY,
     ],
   },
   {
@@ -157,34 +151,8 @@ export const PROJECTS = [
       FRAMEWORK7,
       TAILWIND,
       REDUX,
-      FORMIK,
-      APPEXCHARTS,
-      STRIPE,
-      XENDIT,
-      SOCKETIO,
       LOCALIZATION,
-      SASS
-    ],
-  },
-  {
-    title: "Showcase",
-    company: "klikit PTE Ltd",
-    role: "Team Lead, Developer",
-    date: "September 2023 - September 2025",
-    type: "Web App",
-    logo: "https://mefolio.s3.eu-north-1.amazonaws.com/projects/klikit.webp",
-    techStack: [
-      REACT,
-      NEXTJS,
-      TAILWIND,
-      REDUX,
-      FORMIK,
-      APPEXCHARTS,
-      STRIPE,
-      XENDIT,
-      SOCKETIO,
-      LOCALIZATION,
-      SASS,
+      SENTRY,
     ],
   },
   {
@@ -202,6 +170,7 @@ export const PROJECTS = [
       DOCKER,
       KUBERNETES,
       GCP,
+      SENTRY,
     ],
   },
   {
@@ -216,6 +185,7 @@ export const PROJECTS = [
       FRAMEWORK7,
       TAILWIND,
       WEBPACK,
+      SENTRY,
     ],
   },
   {
@@ -230,6 +200,7 @@ export const PROJECTS = [
       FRAMEWORK7,
       TAILWIND,
       WEBPACK,
+      SENTRY,
     ],
   },
   {
@@ -244,6 +215,7 @@ export const PROJECTS = [
       FRAMEWORK7,
       TAILWIND,
       WEBPACK,
+      SENTRY,
     ],
   },
   {
@@ -258,6 +230,7 @@ export const PROJECTS = [
       FRAMEWORK7,
       TAILWIND,
       WEBPACK,
+      SENTRY,
     ],
   },
   {
@@ -273,6 +246,7 @@ export const PROJECTS = [
       EXPRESSJS,
       TAILWIND,
       WEBPACK,
+      SENTRY,
     ],
   },
   {
@@ -286,6 +260,7 @@ export const PROJECTS = [
       VUE,
       TAILWIND,
       WEBPACK,
+      SENTRY,
     ],
   },
   {
@@ -300,6 +275,7 @@ export const PROJECTS = [
       GOOGLE_MAPS,
       TAILWIND,
       WEBPACK,
+      SENTRY,
     ],
   },
   {
@@ -314,6 +290,7 @@ export const PROJECTS = [
       ROLLUP,
       TAILWIND,
       WEBPACK,
+      SENTRY,
     ],
   },
   {
