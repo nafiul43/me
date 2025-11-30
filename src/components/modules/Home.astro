@@ -1,35 +1,10 @@
 ---
-import ProfilePhoto from "@assets/PP.jpg";
 import SectionCard from "@components/section-card.astro";
+import { ABOUT } from "@data/about";
 import { Icon } from "astro-icon/components";
 import { Image } from "astro:assets";
 
-const links = [
-  {
-    slug: "phone",
-    href: "tel:+8801672219915",
-    icon: "mdi:phone",
-    title: "Phone",
-    value: "+8801672219915",
-    target: "_self",
-  },
-  {
-    slug: "email",
-    href: "mailto:nafiul.islam.tony@gmail.com",
-    icon: "mdi:email",
-    title: "Email",
-    value: "nafiul.islam.tony@gmail.com",
-    target: "_self",
-  },
-  {
-    slug: "linkedin",
-    href: "https://www.linkedin.com/in/nafiul/",
-    icon: "mdi:linkedin",
-    title: "LinkedIn",
-    value: "nafiul",
-    target: "_blank",
-  },
-];
+const { title, subtitle, location, bio, profilePic, links } = ABOUT || {};
 ---
 
 <SectionCard slug="profile" className="scroll-mt-16">
@@ -37,11 +12,11 @@ const links = [
     <Image
       format="webp"
       fit="cover"
-      src={ProfilePhoto}
+      src={profilePic}
       loading="eager"
       width={320}
       height={320}
-      alt="Nafiul Islam Tony - Frontend Lead and Full Stack Engineer profile photo"
+      alt={`${title} - ${subtitle} profile photo`}
       class="rounded-lg h-24 max-w-none md:h-52 md:w-52 sm:h-36 sm:w-36 w-24"
     />
     <a
@@ -49,7 +24,7 @@ const links = [
       class="w-full font-medium items-center justify-center active:translate-y-px bg-primary-700 cursor-pointer focus:outline-none h-10 hover:bg-primary-700 inline-flex px-4 rounded-md select-none shadow-sm text-base text-white"
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Download Nafiul Islam Tony's Resume PDF"
+      aria-label={`Download ${title}'s Resume PDF`}
       download>Download Resume</a
     >
   </div>
@@ -60,12 +35,12 @@ const links = [
           <h1
             class="text-gray-900 dark:text-gray-100 font-extrabold text-3xl sm:text-4xl"
           >
-            Nafiul Islam Tony
+            {title}
           </h1>
           <h4
             class="font-medium text-gray-700 dark:text-gray-100 sm:text-lg text-base"
           >
-            Frontend Lead | Full Stack Engineer
+            {subtitle}
           </h4>
         </div>
         <div class="flex gap-x-2">
@@ -110,19 +85,14 @@ const links = [
           <span
             class="dark:text-gray-300 text-sm font-normal text-gray-500 leading-relaxed sm:leading-relaxed sm:text-base"
           >
-            Dhaka, Bangladesh
+            {location}
           </span>
         </div>
       </div>
       <p
         class="dark:text-gray-300 text-sm font-normal text-gray-500 leading-relaxed sm:leading-relaxed sm:text-base"
       >
-        Engineering Leader with over 13 years of experience shaping SaaS
-        platforms and consumer apps at startups like klikit and Pathao. Built
-        design systems with React, Vue, Storybook, and Rollup, adopted across
-        25+ products, scaled PayLater to millions under tight deadlines, and led
-        teams that shipped regularly. Now eager to bring that speed to creative
-        tech and AI-driven products
+        {bio}
       </p>
     </div>
   </div>
