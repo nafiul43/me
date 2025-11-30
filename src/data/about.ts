@@ -2,7 +2,7 @@ export const ABOUT = {
   title: "Nafiul Islam Tony",
   subtitle: "Frontend Lead & Full Stack Engineer",
   location: "Dhaka, Bangladesh",
-  bio: "Engineering Leader with over 13 years of experience shaping SaaS platforms and consumer apps at startups like klikit and Pathao. Built design systems with React, Vue, Storybook, and Rollup, adopted across 25+ products, scaled PayLater to millions under tight deadlines, and led teams that shipped regularly. Now eager to bring that speed to creative tech and AI-driven products",
+  bio: "13+ Yrs Senior/Lead Frontend Engineer. React, Vue, TypeScript, Next.js. I have helped companies in building high-load robust user-friendly applications and design systems that ship faster. Scaled consumer features to millions and led engineering teams at top startups like klikit and Pathao. Speed, stability, and high performance are my default settings",
   profilePic: 'https://mefolio.s3.eu-north-1.amazonaws.com/Nafiul+Islam+Tony+-+FrontEnd+Lead+Fullstack+Engineer.webp',
   resume: "https://mefolio.s3.eu-north-1.amazonaws.com/resume/Nafiul+Islam+Tony.pdf",
   links: [
@@ -25,10 +25,11 @@ export const ABOUT = {
     {
       slug: "linkedin",
       href: "https://www.linkedin.com/in/nafiul/",
-      icon: "mdi:linkedin",
+      icon: "simple-icons:linkedin",
       title: "LinkedIn",
       value: "nafiul",
       target: "_blank",
     },
   ],
+  openTo: ['Open for Remote Work', 'Available for Mentoring', 'Working on Side Projects'],
 };

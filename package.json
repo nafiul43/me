@@ -1,5 +1,5 @@
 {
-  "name": "",
+  "name": "me",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -9,7 +9,6 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/ts-plugin": "^1.10.5",
     "@fontsource/inter": "^5.2.8",
     "@fontsource/material-icons": "^5.2.7",
     "@tailwindcss/vite": "^4.1.16",
@@ -18,10 +17,10 @@
   },
   "devDependencies": {
     "@astrojs/sitemap": "^3.6.0",
+    "@astrojs/ts-plugin": "^1.10.5",
     "@iconify-json/logos": "^1.2.10",
     "@iconify-json/mdi": "^1.2.3",
     "@iconify-json/simple-icons": "^1.2.60",
-    "sharp": "^0.34.5",
     "tailwindcss": "^4.1.17"
   }
 }
