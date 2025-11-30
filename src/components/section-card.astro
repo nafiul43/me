@@ -11,7 +11,7 @@ const { slug, className } = Astro.props;
   id={slug}
   data-type="section"
   class:list={[
-    "flex gap-x-6 w-full p-6 rounded-xl bg-white dark:bg-gray-800 shadow-sm",
+    "flex w-full p-6 rounded-xl bg-white dark:bg-gray-800 shadow-sm",
     className,
   ]}
 >
@@ -38,7 +38,7 @@ const { slug, className } = Astro.props;
       });
 
       const activeLink = document.querySelector(
-        `#sidebar a[href="#${currentSection.id}"]`
+        `#sidebar a[href="#${currentSection.id}"]`,
       );
       if (activeLink) {
         activeLink.setAttribute("aria-current", "page");

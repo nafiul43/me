@@ -1,27 +1,7 @@
 ---
-import duLogo from "@assets/schools/du.webp";
 import SectionCard from "@components/section-card.astro";
 import { SCHOOLS } from "@data/schools";
 import { Image } from "astro:assets";
-
-const schools = [
-  {
-    institute: "University of Dhaka",
-    degree: "Master of Science in Computer Science & Engineering",
-    logo: duLogo,
-    logoAlt: "University of Dhaka",
-    logoFit: "contain",
-    date: "October 2012 - December 2014",
-  },
-  {
-    institute: "University of Dhaka",
-    degree: "Bachelor of Science (Honours) in Computer Science & Engineering",
-    logo: duLogo,
-    logoAlt: "University of Dhaka",
-    logoFit: "contain",
-    date: "March 2008 - August 2012",
-  },
-];
 ---
 
 <SectionCard slug="education" className="scroll-mt-8 gap-y-4 flex-col">

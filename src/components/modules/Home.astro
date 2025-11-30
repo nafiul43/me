@@ -7,8 +7,11 @@ import { Image } from "astro:assets";
 const { title, subtitle, location, bio, profilePic, links } = ABOUT || {};
 ---
 
-<SectionCard slug="profile" className="scroll-mt-16">
-  <div class="flex items-center gap-4 sm:flex-col">
+<SectionCard
+  slug="profile"
+  className="scroll-mt-16 flex flex-col md:flex-row gap-x-0 gap-y-6 md:gap-x-6 lg:gap-y-0"
+>
+  <div class="flex items-center gap-4 sm:flex-row md:flex-col">
     <Image
       format="webp"
       fit="cover"
@@ -17,20 +20,21 @@ const { title, subtitle, location, bio, profilePic, links } = ABOUT || {};
       width={320}
       height={320}
       alt={`${title}, ${subtitle}`}
-      class="rounded-lg h-24 max-w-none md:h-52 md:w-52 sm:h-36 sm:w-36 w-24"
+      class="rounded-lg h-24 max-w-none md:h-52 md:w-52 h-36 w-36"
     />
     <a
       href="https://mefolio.s3.eu-north-1.amazonaws.com/resume/Nafiul+Islam+Tony.pdf"
-      class="w-full font-medium items-center justify-center active:translate-y-px bg-primary-700 cursor-pointer focus:outline-none h-10 hover:bg-primary-700 inline-flex px-4 rounded-md select-none shadow-sm text-base text-white"
+      class="w-48 md:w-full font-medium items-center justify-center active:translate-y-px bg-primary-700 cursor-pointer focus:outline-none h-10 hover:bg-primary-700 inline-flex px-4 rounded-md select-none shadow-sm text-base text-white"
       target="_blank"
       rel="noopener noreferrer"
       aria-label={`Download ${title}'s Resume PDF`}
-      download>Download Resume</a
-    >
+      download
+      >Download Resume
+    </a>
   </div>
   <div class="flex w-full flex-col gap-5">
     <div class="flex w-full flex-col justify-between gap-y-2">
-      <div class="flex justify-between">
+      <div class="flex justify-between flex-col md:flex-row gap-y-2 md:gap-y-0">
         <div class="w-full flex flex-col">
           <h1
             class="text-gray-900 dark:text-gray-100 font-extrabold text-3xl sm:text-4xl"
