@@ -1,174 +1,111 @@
 ---
+import SectionCard from "@components/section-card.astro";
+import { ABOUT } from "@data/about";
+import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
+
+const { title, subtitle, location, bio, profilePic, links, openTo } =
+  ABOUT || {};
 ---
 
-<section id="home" class="p-4 rounded-xl border border-gray-100 bg-white shadow-sm">
-	Hello World
-</section>
+<SectionCard
+  slug="profile"
+  className="scroll-mt-16 flex flex-col md:flex-row gap-x-0 gap-y-6 md:gap-x-6 lg:gap-y-0"
+>
+  <div class="flex items-center gap-4 sm:flex-row md:flex-col">
+    <Image
+      format="webp"
+      fit="cover"
+      src={profilePic}
+      loading="eager"
+      width={320}
+      height={320}
+      alt={`${title}, ${subtitle}`}
+      class="rounded-lg h-24 max-w-none md:h-52 md:w-52 h-36 w-36"
+    />
+    <a
+      href="/resume.pdf"
+      class="w-48 md:w-full font-medium items-center justify-center active:translate-y-px bg-primary-700 cursor-pointer focus:outline-none h-10 hover:bg-primary-700 inline-flex px-4 rounded-md select-none shadow-sm text-base text-white"
+      aria-label={`Download ${title}'s Resume PDF`}
+      download="Resume of Nafiul Islam Tony.pdf"
+      >Download Resume
+    </a>
+  </div>
+  <div class="flex w-full flex-col gap-5">
+    <div class="flex w-full flex-col justify-between gap-y-2">
+      <div class="flex justify-between flex-col md:flex-row gap-y-2 md:gap-y-0">
+        <div class="w-full flex flex-col">
+          <h1
+            class="text-gray-900 dark:text-gray-100 font-extrabold text-3xl sm:text-4xl"
+          >
+            {title}
+          </h1>
+          <h4
+            class="font-medium text-gray-700 dark:text-gray-100 sm:text-lg text-base"
+          >
+            {subtitle}
+          </h4>
+        </div>
+        <div class="flex gap-x-2">
+          {
+            links.map((link) => (
+              <a
+                href={link.href}
+                class="flex items-center bg-gray-100 hover:bg-primary-700 hover:text-white rounded active:translate-y-px dark:bg-gray-600 dark:text-gray-200 focus:outline-none h-7 justify-center text-gray-400 w-7"
+                aria-label={`${link.slug} section`}
+                data-tooltip={link.slug}
+                data-tooltip-placement="bottom"
+                target={link.target}
+              >
+                <Icon name={link.icon} size={20} />
+              </a>
+            ))
+          }
+        </div>
+      </div>
 
-<style>
-	#background {
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		z-index: -1;
-		filter: blur(100px);
-	}
-
-	#container {
-		font-family: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
-		height: 100%;
-	}
-
-	main {
-		height: 100%;
-		display: flex;
-		justify-content: center;
-	}
-
-	#hero {
-		display: flex;
-		align-items: start;
-		flex-direction: column;
-		justify-content: center;
-		padding: 16px;
-	}
-
-	h1 {
-		font-size: 22px;
-		margin-top: 0.25em;
-	}
-
-	#links {
-		display: flex;
-		gap: 16px;
-	}
-
-	#links a {
-		display: flex;
-		align-items: center;
-		padding: 10px 12px;
-		color: #111827;
-		text-decoration: none;
-		transition: color 0.2s;
-	}
-
-	#links a:hover {
-		color: rgb(78, 80, 86);
-	}
-
-	#links a svg {
-		height: 1em;
-		margin-left: 8px;
-	}
-
-	#links a.button {
-		color: white;
-		background: linear-gradient(83.21deg, #3245ff 0%, #bc52ee 100%);
-		box-shadow:
-			inset 0 0 0 1px rgba(255, 255, 255, 0.12),
-			inset 0 -2px 0 rgba(0, 0, 0, 0.24);
-		border-radius: 10px;
-	}
-
-	#links a.button:hover {
-		color: rgb(230, 230, 230);
-		box-shadow: none;
-	}
-
-	pre {
-		font-family:
-			ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono',
-			monospace;
-		font-weight: normal;
-		background: linear-gradient(14deg, #d83333 0%, #f041ff 100%);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-clip: text;
-		margin: 0;
-	}
-
-	h2 {
-		margin: 0 0 1em;
-		font-weight: normal;
-		color: #111827;
-		font-size: 20px;
-	}
-
-	p {
-		color: #4b5563;
-		font-size: 16px;
-		line-height: 24px;
-		letter-spacing: -0.006em;
-		margin: 0;
-	}
-
-	code {
-		display: inline-block;
-		background:
-			linear-gradient(66.77deg, #f3cddd 0%, #f5cee7 100%) padding-box,
-			linear-gradient(155deg, #d83333 0%, #f041ff 18%, #f5cee7 45%) border-box;
-		border-radius: 8px;
-		border: 1px solid transparent;
-		padding: 6px 8px;
-	}
-
-	.box {
-		padding: 16px;
-		background: rgba(255, 255, 255, 1);
-		border-radius: 16px;
-		border: 1px solid white;
-	}
-
-	#news {
-		position: absolute;
-		bottom: 16px;
-		right: 16px;
-		max-width: 300px;
-		text-decoration: none;
-		transition: background 0.2s;
-		backdrop-filter: blur(50px);
-	}
-
-	#news:hover {
-		background: rgba(255, 255, 255, 0.55);
-	}
-
-	@media screen and (max-height: 368px) {
-		#news {
-			display: none;
-		}
-	}
-
-	@media screen and (max-width: 768px) {
-		#container {
-			display: flex;
-			flex-direction: column;
-		}
-
-		#hero {
-			display: block;
-			padding-top: 10%;
-		}
-
-		#links {
-			flex-wrap: wrap;
-		}
-
-		#links a.button {
-			padding: 14px 18px;
-		}
-
-		#news {
-			right: 16px;
-			left: 16px;
-			bottom: 2.5rem;
-			max-width: 100%;
-		}
-
-		h1 {
-			line-height: 1.5;
-		}
-	}
-</style>
+      <div class="inline-grid xl:grid-cols-[auto_auto] my-2">
+        {
+          links.map((link) => (
+            <div class="flex gap-x-3">
+              <span class="font-medium text-gray-700 dark:text-gray-300 text-base">
+                {link.title}
+              </span>
+              <a
+                href={link.href}
+                class="dark:text-gray-300 text-sm font-normal text-gray-500 leading-relaxed sm:leading-relaxed sm:text-base"
+                target="_self"
+              >
+                {link.value}
+              </a>
+            </div>
+          ))
+        }
+        <div class="flex gap-x-3">
+          <span class="font-medium text-gray-700 dark:text-gray-300 text-base">
+            From
+          </span>
+          <span
+            class="dark:text-gray-300 text-sm font-normal text-gray-500 leading-relaxed sm:leading-relaxed sm:text-base"
+          >
+            {location}
+          </span>
+        </div>
+      </div>
+      <p
+        class="dark:text-gray-300 text-sm font-normal text-gray-500 leading-relaxed sm:leading-relaxed sm:text-base"
+      >
+        {bio}
+      </p>
+      <div class="flex flex-wrap gap-2 mt-4">
+        {
+          openTo.map((open) => (
+            <span class="flex items-center bg-gray-100 rounded dark:bg-gray-700 dark:text-gray-100 font-medium gap-x-1.5 h-6 px-2.5 text-gray-700 text-sm tracking-wide w-fit dark:hover:bg-gray-600 hover:bg-gray-200 cursor-pointer">
+              {open}
+            </span>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</SectionCard>

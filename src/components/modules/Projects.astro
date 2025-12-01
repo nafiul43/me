@@ -1,0 +1,74 @@
+---
+import SectionCard from "@components/section-card.astro";
+import { PROJECTS } from "@data/projects";
+import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
+---
+
+<SectionCard slug="projects" className="scroll-mt-8 gap-y-4 flex-col">
+  <h1 class="text-gray-900 dark:text-gray-100 font-extrabold text-3xl">
+    Projects
+  </h1>
+
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
+    {
+      PROJECTS.map((project) => {
+        return (
+          <div class="flex flex-col gap-y-4 border-2 border-gray-100 dark:border-gray-700 rounded-lg py-4 overflow-hidden">
+            <h4 class="text-gray-900 dark:text-gray-100 font-extrabold text-xl px-4">
+              {project.title}
+            </h4>
+            <Image
+              src={project.logo || "https://via.placeholder.com/150"}
+              alt={project.title}
+              class="w-full lg:h-[200px] md:h-[250px] h-[150px] object-cover bg-gray-100 dark:bg-gray-700"
+              width={500}
+              height={250}
+            />
+            <div class="flex flex-col gap-y-1 px-4">
+              <div class="flex gap-x-2">
+                <span class="w-20 text-gray-700 dark:text-gray-300">
+                  Company
+                </span>
+                <p class="font-medium text-gray-900 dark:text-gray-100">
+                  {project.company}
+                </p>
+              </div>
+              <div class="flex gap-x-2">
+                <span class="w-20 text-gray-700 dark:text-gray-300">Role</span>
+                <p class="font-medium text-gray-900 dark:text-gray-100">
+                  {project.role}
+                </p>
+              </div>
+              <div class="flex gap-x-2">
+                <span class="w-20 text-gray-700 dark:text-gray-300">Type</span>
+                <p class="font-medium text-gray-900 dark:text-gray-100">
+                  {project.type}
+                </p>
+              </div>
+            </div>
+            <div class="px-4 flex flex-col gap-y-2">
+              <span class="font-medium text-gray-700 dark:text-gray-300 text-base">
+                Technologies
+              </span>
+              <div class="dark:text-gray-300 text-gray-500 sm:text-base flex flex-wrap gap-2">
+                {project.techStack.map((tech) => {
+                  return (
+                    <div class="flex items-center bg-gray-100 rounded dark:bg-gray-700 dark:text-gray-100 font-medium gap-x-1.5 h-6 px-2.5 text-gray-700 text-sm tracking-wide w-fit dark:hover:bg-gray-600 hover:bg-gray-200 cursor-pointer">
+                      <Icon
+                        name={tech.icon}
+                        size={16}
+                        color={tech.color || "#fff"}
+                      />
+                      {tech.title}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        );
+      })
+    }
+  </div>
+</SectionCard>

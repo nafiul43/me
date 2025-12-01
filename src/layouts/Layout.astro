@@ -1,30 +1,217 @@
 ---
-import '@fontsource/inter';
-import '@fontsource/roboto';
+import "@fontsource/inter";
+import "@fontsource/material-icons";
 import "../styles/global.css";
+import Sidebar from "../components/sidebar/index.astro";
+import ThemeToggle from "../components/theme-toggole.astro";
+import { VISIBLE_SLUGS } from "../data/index";
 
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonical?: string;
+}
+
+const {
+  title = "Nafiul Islam Tony - Frontend Lead & Full Stack Engineer",
+  description = "Engineering Leader with 13+ years of experience building SaaS platforms and consumer apps. Expert in React, Vue, TypeScript, and modern web technologies. Led teams at klikit and Pathao, shipped products to millions of users.",
+  image = "https://mefolio.s3.eu-north-1.amazonaws.com/Nafiul+Islam+Tony+-+FrontEnd+Lead+Fullstack+Engineer.webp",
+  canonical = Astro.url.pathname,
+} = Astro.props;
+
+const siteUrl = Astro.site || "https://nafiul.dev";
+const canonicalURL = new URL(canonical, siteUrl).href;
+
+// Structured Data for Person
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Nafiul Islam Tony",
+  jobTitle: "Frontend Lead & Full Stack Engineer",
+  url: siteUrl.toString(),
+  image: image,
+  sameAs: [
+    "https://www.linkedin.com/in/nafiul/",
+    "https://github.com/nafiul43",
+  ],
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Dhaka",
+    addressCountry: "Bangladesh",
+  },
+  email: "nafiul.islam.tony@gmail.com",
+  telephone: "+8801672219915",
+  alumniOf: {
+    "@type": "Organization",
+    name: "University of Dhaka",
+  },
+  worksFor: [
+    {
+      "@type": "Organization",
+      name: "klikit PTE Ltd.",
+    },
+    {
+      "@type": "Organization",
+      name: "Pathao Ltd.",
+    },
+  ],
+  knowsAbout: [
+    "React",
+    "Vue.js",
+    "TypeScript",
+    "JavaScript",
+    "NextJS",
+    "Node.js",
+    "Full Stack Development",
+    "Frontend Architecture",
+    "Team Leadership",
+    "klikit",
+    "Pathao",
+  ],
+};
 ---
 
 <!doctype html>
 <html lang="en" class="scroll-smooth">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body class="flex justify-center overflow-x-hidden bg-gray-50 dark:bg-gray-900 xl:relative">
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta
+      name="keywords"
+      content="Nafiul Islam Tony, Frontend Developer, Full Stack Engineer, React Developer, Vue Developer, TypeScript, JavaScript, Web Development, Software Engineer, Tech Lead, Bangladesh, Dhaka"
+    />
+    <meta name="author" content="Nafiul Islam Tony" />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:site_name" content="Nafiul Islam Tony - Portfolio" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={image} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <!-- Theme Color -->
+    <meta
+      name="theme-color"
+      content="#ffffff"
+      media="(prefers-color-scheme: light)"
+    />
+    <meta
+      name="theme-color"
+      content="#1a202c"
+      media="(prefers-color-scheme: dark)"
+    />
+
+    <!-- Generator -->
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Preconnect to external domains for performance -->
+    <link rel="preconnect" href="https://mefolio.s3.eu-north-1.amazonaws.com" />
+    <link
+      rel="dns-prefetch"
+      href="https://mefolio.s3.eu-north-1.amazonaws.com"
+    />
+
+    <!-- Structured Data -->
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(structuredData)}
+    />
+  </head>
+  <body class="bg-gray-50 dark:bg-gray-900">
+    <div class="starfield fixed inset-0 z-0 pointer-events-none">
+      <div class="stars"></div>
+      <div class="stars2"></div>
+      <div class="stars3"></div>
+    </div>
+    <div class="flex justify-center min-h-screen relative z-10">
+      <main class="w-full max-w-5xl px-4 py-8">
+        <slot />
+      </main>
+      <Sidebar />
+      <ThemeToggle />
+    </div>
+  </body>
 </html>
 
+<script define:vars={{ validSlugs: VISIBLE_SLUGS }}>
+  // Handle initial load
+  document.addEventListener("DOMContentLoaded", () => {
+    const target = document.querySelector(window.location.hash);
+
+    if (target && validSlugs.includes(`#${target.id}`)) {
+      target.scrollIntoView({ behavior: "smooth" });
+      return;
+    }
+    // If no hash is present, scroll to #profile and update URL
+    const profileSection = document.getElementById("profile");
+
+    if (profileSection) {
+      profileSection.scrollIntoView({ behavior: "smooth" });
+      history.replaceState(null, "", "#profile");
+    }
+  });
+
+  // Theme handling
+  const theme = (() => {
+    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+      return localStorage.getItem("theme");
+    }
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+  })();
+
+  const themeMeta = document.getElementsByName("theme-color");
+
+  if (themeMeta[0]) {
+    themeMeta[0].content = theme === "dark" ? "#1a202c" : "#ffffff";
+  }
+
+  if (theme === "light") {
+    document.documentElement.classList.remove("dark");
+  } else {
+    document.documentElement.classList.add("dark");
+  }
+
+  window.localStorage.setItem("theme", theme);
+</script>
+
 <style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-		font-family: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
-	}
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    font-family:
+      Inter var,
+      "Helvetica Neue",
+      "Arial Nova",
+      "Nimbus Sans",
+      Arial,
+      sans-serif;
+  }
 </style>
