@@ -4,7 +4,7 @@ import "@fontsource/material-icons";
 import "../styles/global.css";
 import Sidebar from "../components/sidebar/index.astro";
 import ThemeToggle from "../components/theme-toggole.astro";
-import { Icon } from "astro-icon/components";
+import { VISIBLE_SLUGS } from "../data/index";
 
 interface Props {
   title?: string;
@@ -16,7 +16,7 @@ interface Props {
 const {
   title = "Nafiul Islam Tony - Frontend Lead & Full Stack Engineer",
   description = "Engineering Leader with 13+ years of experience building SaaS platforms and consumer apps. Expert in React, Vue, TypeScript, and modern web technologies. Led teams at klikit and Pathao, shipped products to millions of users.",
-  image = "https://mefolio.s3.eu-north-1.amazonaws.com/PP.jpg",
+  image = "https://mefolio.s3.eu-north-1.amazonaws.com/Nafiul+Islam+Tony+-+FrontEnd+Lead+Fullstack+Engineer.webp",
   canonical = Astro.url.pathname,
 } = Astro.props;
 
@@ -110,7 +110,7 @@ const structuredData = {
     <meta property="twitter:image" content={image} />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
     <!-- Theme Color -->
@@ -157,22 +157,21 @@ const structuredData = {
   </body>
 </html>
 
-<script is:inline>
+<script define:vars={{ validSlugs: VISIBLE_SLUGS }}>
   // Handle initial load
   document.addEventListener("DOMContentLoaded", () => {
+    const target = document.querySelector(window.location.hash);
+
+    if (target && validSlugs.includes(`#${target.id}`)) {
+      target.scrollIntoView({ behavior: "smooth" });
+      return;
+    }
     // If no hash is present, scroll to #profile and update URL
-    if (!window.location.hash) {
-      const profileSection = document.getElementById("profile");
-      if (profileSection) {
-        profileSection.scrollIntoView({ behavior: "smooth" });
-        history.replaceState(null, "", "#profile");
-      }
-    } else {
-      // If there's a hash in the URL, scroll to that section
-      const target = document.querySelector(window.location.hash);
-      if (target) {
-        target.scrollIntoView({ behavior: "smooth" });
-      }
+    const profileSection = document.getElementById("profile");
+
+    if (profileSection) {
+      profileSection.scrollIntoView({ behavior: "smooth" });
+      history.replaceState(null, "", "#profile");
     }
   });
 

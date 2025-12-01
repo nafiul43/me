@@ -72,6 +72,26 @@
   to   { transform: translateY(-2000px); }
 }
 
+.page-404 svg {
+    width: clamp(300px , 70% , 600px);
+    height: 40%; 
+}
+
+#rocket{
+    transform: translateY(750px);
+    animation: launch 2s ease-out forwards;
+}
+
+@keyframes launch {
+    from {
+        transform: translateY(750px);
+    }
+    to{
+        perspective: 500px;
+        transform: translateY(0px); 
+    }
+}
+
 @layer utilities {
 
   /* ------------------------------------------
