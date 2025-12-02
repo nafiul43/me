@@ -1,5 +1,6 @@
 ---
-import "@fontsource/inter";
+// Self-hosted fonts for optimal caching and preloading
+import "../styles/fonts.css";
 import "@fontsource/material-icons";
 import "../styles/global.css";
 import Sidebar from "../components/sidebar/index.astro";
@@ -20,7 +21,7 @@ const {
   canonical = Astro.url.pathname,
 } = Astro.props;
 
-const siteUrl = Astro.site || "https://nafiul.dev";
+const siteUrl = Astro.site || "https://nafiulislam.site";
 const canonicalURL = new URL(canonical, siteUrl).href;
 
 // Structured Data for Person
@@ -135,6 +136,22 @@ const structuredData = {
       href="https://mefolio.s3.eu-north-1.amazonaws.com"
     />
 
+    <!-- Preload critical self-hosted fonts -->
+    <link
+      rel="preload"
+      href="/fonts/inter-latin-400-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="/fonts/inter-latin-600-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+
     <!-- Structured Data -->
     <script
       type="application/ld+json"
@@ -206,12 +223,7 @@ const structuredData = {
     margin: 0;
     width: 100%;
     height: 100%;
-    font-family:
-      Inter var,
-      "Helvetica Neue",
-      "Arial Nova",
-      "Nimbus Sans",
-      Arial,
+    font-family: Inter, "Helvetica Neue", "Arial Nova", "Nimbus Sans", Arial,
       sans-serif;
   }
 </style>

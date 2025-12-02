@@ -11,7 +11,7 @@
 }
 
 @theme {
-  --font-sans: Inter var, "Helvetica Neue", "Arial Nova", "Nimbus Sans", Arial,
+  --font-sans: Inter, "Helvetica Neue", "Arial Nova", "Nimbus Sans", Arial,
     sans-serif;
 
   --color-orange-*: initial;

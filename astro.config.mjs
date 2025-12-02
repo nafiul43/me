@@ -10,7 +10,7 @@ import sentry from "@sentry/astro";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://nafiul.dev", // Update this to your actual domain
+  site: "https://nafiulislam.site", // Update this to your actual domain
   integrations: [icon(), sitemap({
     changefreq: "weekly",
     priority: 0.7,

@@ -1,0 +1,97 @@
+# =============================================================================
+# STATIC ASSETS CACHING CONFIGURATION
+# =============================================================================
+# This file configures HTTP cache headers for Netlify/Cloudflare Pages
+# All public assets are cached with appropriate durations
+
+# =============================================================================
+# IMAGES - Cache for 1 year (immutable)
+# =============================================================================
+# Favicons and icons
+/*.ico
+  Cache-Control: public, max-age=31536000, immutable
+/*.svg
+  Cache-Control: public, max-age=31536000, immutable
+/apple-touch-icon.png
+  Cache-Control: public, max-age=31536000, immutable
+
+# Image formats
+/*.png
+  Cache-Control: public, max-age=31536000, immutable
+/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+/*.jpg
+  Cache-Control: public, max-age=31536000, immutable
+/*.jpeg
+  Cache-Control: public, max-age=31536000, immutable
+/*.gif
+  Cache-Control: public, max-age=31536000, immutable
+/*.avif
+  Cache-Control: public, max-age=31536000, immutable
+
+# =============================================================================
+# FONTS - Cache for 1 year (immutable)
+# =============================================================================
+/*.woff
+  Cache-Control: public, max-age=31536000, immutable
+/*.woff2
+  Cache-Control: public, max-age=31536000, immutable
+/*.ttf
+  Cache-Control: public, max-age=31536000, immutable
+/*.otf
+  Cache-Control: public, max-age=31536000, immutable
+/*.eot
+  Cache-Control: public, max-age=31536000, immutable
+
+# =============================================================================
+# DOCUMENTS - Cache for 1 week
+# =============================================================================
+/*.pdf
+  Cache-Control: public, max-age=604800
+/resume.pdf
+  Cache-Control: public, max-age=604800
+
+# =============================================================================
+# CODE BUNDLES - Cache for 1 year (content-hashed)
+# =============================================================================
+/*.css
+  Cache-Control: public, max-age=31536000, immutable
+/*.js
+  Cache-Control: public, max-age=31536000, immutable
+/*.mjs
+  Cache-Control: public, max-age=31536000, immutable
+
+# =============================================================================
+# HTML - Cache for 1 hour with revalidation
+# =============================================================================
+/*.html
+  Cache-Control: public, max-age=3600, must-revalidate
+/index.html
+  Cache-Control: public, max-age=3600, must-revalidate
+
+# =============================================================================
+# SPECIAL FILES - Short cache or no cache
+# =============================================================================
+# robots.txt - Cache for 1 day (may need updates)
+/robots.txt
+  Cache-Control: public, max-age=86400
+
+# sitemap.xml - Cache for 1 day (regenerated on build)
+/sitemap*.xml
+  Cache-Control: public, max-age=86400
+
+# manifest files - Cache for 1 week
+/*.json
+  Cache-Control: public, max-age=604800
+/*.webmanifest
+  Cache-Control: public, max-age=604800
+
+# =============================================================================
+# SECURITY HEADERS (Applied to all routes)
+# =============================================================================
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  X-XSS-Protection: 1; mode=block
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()

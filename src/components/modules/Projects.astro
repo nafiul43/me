@@ -1,8 +1,10 @@
 ---
 import SectionCard from "@components/section-card.astro";
-import { PROJECTS } from "@data/projects";
 import { Icon } from "astro-icon/components";
 import { Image } from "astro:assets";
+
+// Lazy load projects data using dynamic import
+const { PROJECTS } = await import("@data/projects");
 ---
 
 <SectionCard slug="projects" className="scroll-mt-8 gap-y-4 flex-col">
