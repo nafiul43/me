@@ -1,21 +1,45 @@
 # =============================================================================
 # STATIC ASSETS CACHING CONFIGURATION
 # =============================================================================
-# This file configures HTTP cache headers for Netlify/Cloudflare Pages
-# All public assets are cached with appropriate durations
+# This file configures HTTP cache headers for Cloudflare Pages/Netlify/S3
+# Optimized for Astro static site with self-hosted fonts
+
+# =============================================================================
+# ASTRO BUILD ASSETS - Cache for 1 year (content-hashed)
+# =============================================================================
+# Astro generates hashed filenames in _astro/ directory
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# =============================================================================
+# FONTS (All formats) - Cache for 1 year (immutable)
+# =============================================================================
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.woff2
+  Cache-Control: public, max-age=31536000, immutable
+/*.woff
+  Cache-Control: public, max-age=31536000, immutable
+/*.ttf
+  Cache-Control: public, max-age=31536000, immutable
+/*.otf
+  Cache-Control: public, max-age=31536000, immutable
+/*.eot
+  Cache-Control: public, max-age=31536000, immutable
 
 # =============================================================================
 # IMAGES - Cache for 1 year (immutable)
 # =============================================================================
 # Favicons and icons
-/*.ico
+/favicon.ico
   Cache-Control: public, max-age=31536000, immutable
-/*.svg
+/favicon.svg
   Cache-Control: public, max-age=31536000, immutable
 /apple-touch-icon.png
   Cache-Control: public, max-age=31536000, immutable
 
-# Image formats
+# Image formats (all locations)
 /*.png
   Cache-Control: public, max-age=31536000, immutable
 /*.webp
@@ -28,31 +52,19 @@
   Cache-Control: public, max-age=31536000, immutable
 /*.avif
   Cache-Control: public, max-age=31536000, immutable
-
-# =============================================================================
-# FONTS - Cache for 1 year (immutable)
-# =============================================================================
-/*.woff
-  Cache-Control: public, max-age=31536000, immutable
-/*.woff2
-  Cache-Control: public, max-age=31536000, immutable
-/*.ttf
-  Cache-Control: public, max-age=31536000, immutable
-/*.otf
-  Cache-Control: public, max-age=31536000, immutable
-/*.eot
+/*.svg
   Cache-Control: public, max-age=31536000, immutable
 
 # =============================================================================
 # DOCUMENTS - Cache for 1 week
 # =============================================================================
-/*.pdf
-  Cache-Control: public, max-age=604800
 /resume.pdf
+  Cache-Control: public, max-age=604800
+/*.pdf
   Cache-Control: public, max-age=604800
 
 # =============================================================================
-# CODE BUNDLES - Cache for 1 year (content-hashed)
+# CODE BUNDLES - Cache for 1 year (Astro adds content hashes)
 # =============================================================================
 /*.css
   Cache-Control: public, max-age=31536000, immutable
@@ -60,27 +72,33 @@
   Cache-Control: public, max-age=31536000, immutable
 /*.mjs
   Cache-Control: public, max-age=31536000, immutable
+/*.map
+  Cache-Control: public, max-age=31536000, immutable
 
 # =============================================================================
 # HTML - Cache for 1 hour with revalidation
 # =============================================================================
-/*.html
+/
   Cache-Control: public, max-age=3600, must-revalidate
 /index.html
   Cache-Control: public, max-age=3600, must-revalidate
+/*.html
+  Cache-Control: public, max-age=3600, must-revalidate
 
 # =============================================================================
-# SPECIAL FILES - Short cache or no cache
+# SPECIAL FILES - Short cache
 # =============================================================================
 # robots.txt - Cache for 1 day (may need updates)
 /robots.txt
   Cache-Control: public, max-age=86400
 
-# sitemap.xml - Cache for 1 day (regenerated on build)
-/sitemap*.xml
+# Sitemaps - Cache for 1 day (regenerated on build)
+/sitemap-index.xml
+  Cache-Control: public, max-age=86400
+/sitemap-*.xml
   Cache-Control: public, max-age=86400
 
-# manifest files - Cache for 1 week
+# Manifest files - Cache for 1 week
 /*.json
   Cache-Control: public, max-age=604800
 /*.webmanifest
@@ -95,3 +113,4 @@
   X-XSS-Protection: 1; mode=block
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://browser.sentry-cdn.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://mefolio.s3.eu-north-1.amazonaws.com; font-src 'self' data:; connect-src 'self' https://o4508457969270784.ingest.us.sentry.io; frame-ancestors 'none'; base-uri 'self'; form-action 'self'

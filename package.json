@@ -9,7 +9,6 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@fontsource/inter": "^5.2.8",
     "@fontsource/material-icons": "^5.2.7",
     "@sentry/astro": "^10.27.0",
     "astro": "^5.15.3",
@@ -23,6 +22,7 @@
     "@iconify-json/mdi": "^1.2.3",
     "@iconify-json/simple-icons": "^1.2.60",
     "@tailwindcss/vite": "^4.1.16",
+    "sharp": "^0.34.5",
     "tailwindcss": "^4.1.17",
     "typescript": "^5.9.3"
   }

@@ -52,6 +52,29 @@ import {
   XENDIT
 } from "./stack";
 
+const LOGOS = {
+  KLIKIT: {
+    CLOUD: "https://mefolio.s3.eu-north-1.amazonaws.com/projects/cloud.webp",
+    ADMIN: "https://mefolio.s3.eu-north-1.amazonaws.com/projects/admin.webp",
+    WEBSHOP: "https://mefolio.s3.eu-north-1.amazonaws.com/projects/webshop.webp",
+    RESERVATION: "https://mefolio.s3.eu-north-1.amazonaws.com/projects/reservation.webp",
+    MAIN: "https://mefolio.s3.eu-north-1.amazonaws.com/projects/klikit.webp",
+  },
+  PATHAO: {
+    FOOD: "https://mefolio.s3.eu-north-1.amazonaws.com/projects/pathaofood.webp",
+    PAYLATER: "https://mefolio.s3.eu-north-1.amazonaws.com/projects/paylater.webp",
+    SHOP: "https://mefolio.s3.eu-north-1.amazonaws.com/projects/pathaoshop.webp",
+    POINTS: "https://mefolio.s3.eu-north-1.amazonaws.com/projects/pathaopoints.webp",
+    MAIN: "https://mefolio.s3.eu-north-1.amazonaws.com/projects/pathao.webp",
+  },
+  WIDESPACE: "https://mefolio.s3.eu-north-1.amazonaws.com/projects/widespace.webp",
+  ENOSIS: {
+    ITRAK: "https://mefolio.s3.eu-north-1.amazonaws.com/projects/itrak.webp",
+    IPASS: "https://mefolio.s3.eu-north-1.amazonaws.com/projects/ipass-kiosk.webp",
+    E21: "https://mefolio.s3.eu-north-1.amazonaws.com/projects/e21Mobile.webp",
+  }
+};
+
 export const PROJECTS = [
   {
     title: "klikit Cloud",
@@ -59,7 +82,7 @@ export const PROJECTS = [
     role: "Team Lead, Architect, Developer",
     date: "January 2023 - September 2025",
     type: "Web App",
-    logo: "https://mefolio.s3.eu-north-1.amazonaws.com/projects/cloud.webp",
+    logo: LOGOS.KLIKIT.CLOUD,
     techStack: [
       REACT,
       VITE,
@@ -80,7 +103,7 @@ export const PROJECTS = [
     role: "Team Lead, Architect, Developer",
     date: "January 2023 - September 2025",
     type: "Web App",
-    logo: "https://mefolio.s3.eu-north-1.amazonaws.com/projects/admin.webp",
+    logo: LOGOS.KLIKIT.ADMIN,
     techStack: [
       REACT,
       VITE,
@@ -101,7 +124,7 @@ export const PROJECTS = [
     role: "Team Lead, Developer",
     date: "February 2023 - September 2025",
     type: "Web App",
-    logo: "https://mefolio.s3.eu-north-1.amazonaws.com/projects/webshop.webp",
+    logo: LOGOS.KLIKIT.WEBSHOP,
     techStack: [
       REACT,
       VITE,
@@ -123,7 +146,7 @@ export const PROJECTS = [
     role: "Team Lead, Developer",
     date: "September 2023 - September 2025",
     type: "Web App",
-    logo: "https://mefolio.s3.eu-north-1.amazonaws.com/projects/reservation.webp",
+    logo: LOGOS.KLIKIT.RESERVATION,
     techStack: [
       REACT,
       VITE,
@@ -145,7 +168,7 @@ export const PROJECTS = [
     role: "Team Lead, Developer",
     date: "September 2023 - September 2025",
     type: "Web App",
-    logo: "https://mefolio.s3.eu-north-1.amazonaws.com/projects/klikit.webp",
+    logo: LOGOS.KLIKIT.MAIN,
     techStack: [
       REACT,
       FRAMEWORK7,
@@ -161,7 +184,7 @@ export const PROJECTS = [
     role: "Team Lead, Developer",
     date: "July 2022 - December 2022",
     type: "Backend Micro-services",
-    logo: "https://mefolio.s3.eu-north-1.amazonaws.com/projects/pathaofood.webp",
+    logo: LOGOS.PATHAO.FOOD,
     techStack: [
       GO_LANG,
       PYTHON,
@@ -179,7 +202,7 @@ export const PROJECTS = [
     role: "Team Lead, Developer",
     date: "July 2021 - June 2022",
     type: "Mobile App WebView",
-    logo: "https://mefolio.s3.eu-north-1.amazonaws.com/projects/paylater.webp",
+    logo: LOGOS.PATHAO.PAYLATER,
     techStack: [
       VUE,
       FRAMEWORK7,
@@ -194,7 +217,7 @@ export const PROJECTS = [
     role: "Team Lead, Developer",
     date: "August 2019 - December 2021",
     type: "Mobile App WebView",
-    logo: "https://mefolio.s3.eu-north-1.amazonaws.com/projects/pathaoshop.webp",
+    logo: LOGOS.PATHAO.SHOP,
     techStack: [
       VUE,
       FRAMEWORK7,
@@ -209,7 +232,7 @@ export const PROJECTS = [
     role: "Team Lead, Developer",
     date: "March 2021 - December 2022",
     type: "Mobile App WebView",
-    logo: "https://mefolio.s3.eu-north-1.amazonaws.com/projects/pathao.webp",
+    logo: LOGOS.PATHAO.MAIN,
     techStack: [
       VUE,
       FRAMEWORK7,
@@ -224,7 +247,7 @@ export const PROJECTS = [
     role: "Team Lead, Developer",
     date: "August 2019 - December 2021",
     type: "Mobile App WebView",
-    logo: "https://mefolio.s3.eu-north-1.amazonaws.com/projects/pathaopoints.webp",
+    logo: LOGOS.PATHAO.POINTS,
     techStack: [
       VUE,
       FRAMEWORK7,
@@ -239,7 +262,7 @@ export const PROJECTS = [
     role: "Team Lead, Developer",
     date: "July 2022 - December 2022",
     type: "Web App",
-    logo: "https://mefolio.s3.eu-north-1.amazonaws.com/projects/pathao.webp",
+    logo: LOGOS.PATHAO.MAIN,
     techStack: [
       VUE,
       GOOGLE_MAPS,
@@ -255,7 +278,7 @@ export const PROJECTS = [
     role: "Team Lead, Developer",
     date: "February 2019 - April 2021",
     type: "Web App",
-    logo: "https://mefolio.s3.eu-north-1.amazonaws.com/projects/pathao.webp",
+    logo: LOGOS.PATHAO.MAIN,
     techStack: [
       VUE,
       TAILWIND,
@@ -269,7 +292,7 @@ export const PROJECTS = [
     role: "Developer",
     date: "July 2018 - March 2019",
     type: "Web App",
-    logo: "https://mefolio.s3.eu-north-1.amazonaws.com/projects/pathao.webp",
+    logo: LOGOS.PATHAO.MAIN,
     techStack: [
       VUE,
       GOOGLE_MAPS,
@@ -284,7 +307,7 @@ export const PROJECTS = [
     role: "Developer",
     date: "July 2018 - March 2019",
     type: "Web App",
-    logo: "https://mefolio.s3.eu-north-1.amazonaws.com/projects/pathao.webp",
+    logo: LOGOS.PATHAO.MAIN,
     techStack: [
       VUE,
       ROLLUP,
@@ -299,7 +322,7 @@ export const PROJECTS = [
     role: "Developer",
     date: "Sep 2017 – Jun 2018",
     type: "Web App",
-    logo: "https://mefolio.s3.eu-north-1.amazonaws.com/projects/widespace.webp",
+    logo: LOGOS.WIDESPACE,
     techStack: [
       VUE,
       LARAVEL,
@@ -315,7 +338,7 @@ export const PROJECTS = [
     role: "Developer",
     date: "Sep 2017 – Jun 2018",
     type: "Web App",
-    logo: "https://mefolio.s3.eu-north-1.amazonaws.com/projects/widespace.webp",
+    logo: LOGOS.WIDESPACE,
     techStack: [
       LARAVEL,
       MYSQL,
@@ -328,7 +351,7 @@ export const PROJECTS = [
     role: "Developer",
     date: "Nov 2017 – Jun 2018",
     type: "Web App",
-    logo: "https://mefolio.s3.eu-north-1.amazonaws.com/projects/widespace.webp",
+    logo: LOGOS.WIDESPACE,
     techStack: [
       VUE,
       AWS,
@@ -345,7 +368,7 @@ export const PROJECTS = [
     role: "Developer",
     date: "Feb 2017 – Oct 2017",
     type: "Web App",
-    logo: "https://mefolio.s3.eu-north-1.amazonaws.com/projects/widespace.webp",
+    logo: LOGOS.WIDESPACE,
     techStack: [
       VUE,
       ANGULARJS,
@@ -361,7 +384,7 @@ export const PROJECTS = [
     role: "Developer",
     date: "Feb 2017 – Aug 2017",
     type: "Web App",
-    logo: "https://mefolio.s3.eu-north-1.amazonaws.com/projects/widespace.webp",
+    logo: LOGOS.WIDESPACE,
     techStack: [
       CODEIGNITER,
       SASS,
@@ -375,7 +398,7 @@ export const PROJECTS = [
     role: "Developer",
     date: "July 2014 – February 2017",
     type: "Web App",
-    logo: "https://mefolio.s3.eu-north-1.amazonaws.com/projects/widespace.webp",
+    logo: LOGOS.WIDESPACE,
     techStack: [
       REACT,
       ANGULARJS,
@@ -392,7 +415,7 @@ export const PROJECTS = [
     role: "Developer",
     date: "Nov 2015 – Feb 2016",
     type: "Web App",
-    logo: "https://mefolio.s3.eu-north-1.amazonaws.com/projects/widespace.webp",
+    logo: LOGOS.WIDESPACE,
     techStack: [
       ES5,
       HANDLEBARS,
@@ -406,7 +429,7 @@ export const PROJECTS = [
     role: "Developer",
     date: "Jan 2013 – June 2014",
     type: "WinForms App",
-    logo: "https://mefolio.s3.eu-north-1.amazonaws.com/projects/itrak.webp",
+    logo: LOGOS.ENOSIS.ITRAK,
     techStack: [
       WINFORMS,
       WINDOWS_SERVICE,
@@ -423,7 +446,7 @@ export const PROJECTS = [
     role: "Developer",
     date: "Oct 2013 – Feb 2014",
     type: "WPF App",
-    logo: "https://mefolio.s3.eu-north-1.amazonaws.com/projects/ipass-kiosk.webp",
+    logo: LOGOS.ENOSIS.IPASS,
     techStack: [
       WPF,
       WINDOWS_SERVICE,
@@ -437,7 +460,7 @@ export const PROJECTS = [
     role: "Developer",
     date: "Aug 2012 – Oct 2013",
     type: "Hybrid Mobile App",
-    logo: "https://mefolio.s3.eu-north-1.amazonaws.com/projects/e21Mobile.webp",
+    logo: LOGOS.ENOSIS.E21,
     techStack: [
       JQUERY_MOBILE,
       CORDOVA,

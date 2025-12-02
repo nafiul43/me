@@ -11,18 +11,24 @@ import sentry from "@sentry/astro";
 // https://astro.build/config
 export default defineConfig({
   site: "https://nafiulislam.site", // Update this to your actual domain
-  integrations: [icon(), sitemap({
-    changefreq: "weekly",
-    priority: 0.7,
-    lastmod: new Date(),
-  }), sentry({
+  integrations: [
+    icon(),
+    sitemap({
+      changefreq: "weekly",
+      priority: 0.7,
+      lastmod: new Date(),
+    }),
+    sentry({
       project: "javascript-astro",
       org: "nafiulislamtony",
       authToken: process.env.SENTRY_AUTH_TOKEN,
     })],
-
   vite: {
     plugins: [tailwindcss()],
+    build: {
+      sourcemap: false,
+      minify: 'esbuild',
+    }
   },
   
   // Optimize build
