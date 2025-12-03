@@ -1,8 +1,8 @@
 ---
-// Self-hosted fonts for optimal caching and preloading
 import "../styles/fonts.css";
 import "@fontsource/material-icons";
 import "../styles/global.css";
+
 import Sidebar from "../components/sidebar/index.astro";
 import ThemeToggle from "../components/theme-toggole.astro";
 import { VISIBLE_SLUGS } from "../data/index";
@@ -136,6 +136,12 @@ const structuredData = {
       href="https://mefolio.s3.eu-north-1.amazonaws.com"
     />
 
+    <!-- DNS prefetch for Sentry (loaded after page render) -->
+    <link
+      rel="dns-prefetch"
+      href="https://o4510456061755392.ingest.us.sentry.io"
+    />
+
     <!-- Preload critical self-hosted fonts -->
     <link
       rel="preload"
@@ -157,6 +163,23 @@ const structuredData = {
       type="application/ld+json"
       set:html={JSON.stringify(structuredData)}
     />
+    <!-- Theme handling - must be in head to prevent FOUC -->
+    <script is:inline>
+      (function () {
+        const t =
+          (typeof localStorage !== "undefined" &&
+            localStorage.getItem("theme")) ||
+          (window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light");
+        document.documentElement.classList[t === "dark" ? "add" : "remove"](
+          "dark",
+        );
+        try {
+          localStorage.setItem("theme", t);
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body class="bg-gray-50 dark:bg-gray-900">
     <div class="starfield fixed inset-0 z-0 pointer-events-none">
@@ -171,11 +194,30 @@ const structuredData = {
       <Sidebar />
       <ThemeToggle />
     </div>
+
+    <!-- Lazy-load starfield CSS after page render -->
+    <script is:inline>
+      if (typeof requestIdleCallback !== "undefined") {
+        requestIdleCallback(function () {
+          var l = document.createElement("link");
+          l.rel = "stylesheet";
+          l.href = "/styles/starfield.css";
+          document.head.appendChild(l);
+        });
+      } else {
+        window.addEventListener("load", function () {
+          var l = document.createElement("link");
+          l.rel = "stylesheet";
+          l.href = "/styles/starfield.css";
+          document.head.appendChild(l);
+        });
+      }
+    </script>
   </body>
 </html>
 
 <script define:vars={{ validSlugs: VISIBLE_SLUGS }}>
-  // Handle initial load
+  // Handle initial load and hash navigation
   document.addEventListener("DOMContentLoaded", () => {
     const target = document.querySelector(window.location.hash);
 
@@ -190,31 +232,14 @@ const structuredData = {
       profileSection.scrollIntoView({ behavior: "smooth" });
       history.replaceState(null, "", "#profile");
     }
-  });
 
-  // Theme handling
-  const theme = (() => {
-    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
-      return localStorage.getItem("theme");
+    // Update theme-color meta tag
+    const theme = localStorage.getItem("theme") || "light";
+    const themeMeta = document.getElementsByName("theme-color")[0];
+    if (themeMeta) {
+      themeMeta.content = theme === "dark" ? "#1a202c" : "#ffffff";
     }
-    return window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light";
-  })();
-
-  const themeMeta = document.getElementsByName("theme-color");
-
-  if (themeMeta[0]) {
-    themeMeta[0].content = theme === "dark" ? "#1a202c" : "#ffffff";
-  }
-
-  if (theme === "light") {
-    document.documentElement.classList.remove("dark");
-  } else {
-    document.documentElement.classList.add("dark");
-  }
-
-  window.localStorage.setItem("theme", theme);
+  });
 </script>
 
 <style>

@@ -3,6 +3,11 @@
 # Exit on error
 set -e
 
+# Load .env variables if present
+if [ -f .env ]; then
+  export $(grep -v '^#' .env | xargs)
+fi
+
 # Configuration
 BUCKET_NAME="nitsite"
 DIST_DIR="dist"
