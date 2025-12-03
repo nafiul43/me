@@ -22,7 +22,7 @@ export const SCHOOLS: School[] = [
     institute: "University of Dhaka",
     degree: "Master of Science in Computer Science & Engineering",
     logo: {
-      src: "https://mefolio.s3.eu-north-1.amazonaws.com/schools/du.webp",
+      src: `${import.meta.env.PUBLIC_CDN_BASE_URL}/schools/du.webp`,
       fit: "contain",
     },
     date: "October 2012 - December 2014",
@@ -31,7 +31,7 @@ export const SCHOOLS: School[] = [
     institute: "University of Dhaka",
     degree: "Bachelor of Science (Honours) in Computer Science & Engineering",
     logo: {
-      src: "https://mefolio.s3.eu-north-1.amazonaws.com/schools/du.webp",
+      src: `${import.meta.env.PUBLIC_CDN_BASE_URL}/schools/du.webp`,
       fit: "contain",
     },
     date: "March 2008 - August 2012",

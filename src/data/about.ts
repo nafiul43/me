@@ -3,8 +3,8 @@ export const ABOUT = {
   subtitle: "Frontend Lead & Full Stack Engineer",
   location: "Dhaka, Bangladesh",
   bio: "13+ Yrs Senior/Lead Frontend Engineer. React, Vue, TypeScript, Next.js. I have helped companies in building high-load robust user-friendly applications and design systems that ship faster. Scaled consumer features to millions and led engineering teams at top startups like klikit and Pathao. Speed, stability, and high performance are my default settings",
-  profilePic: 'https://mefolio.s3.eu-north-1.amazonaws.com/Nafiul+Islam+Tony+-+FrontEnd+Lead+Fullstack+Engineer.webp',
-  resume: "https://mefolio.s3.eu-north-1.amazonaws.com/resume/Nafiul+Islam+Tony.pdf",
+  profilePic: `${import.meta.env.PUBLIC_CDN_BASE_URL}/Nafiul+Islam+Tony+-+FrontEnd+Lead+Fullstack+Engineer.webp`,
+  resume: `${import.meta.env.PUBLIC_CDN_BASE_URL}/resume/Nafiul+Islam+Tony.pdf`,
   links: [
     {
       slug: "phone",

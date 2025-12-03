@@ -54,24 +54,24 @@ import {
 
 const LOGOS = {
   KLIKIT: {
-    CLOUD: "https://mefolio.s3.eu-north-1.amazonaws.com/projects/cloud.webp",
-    ADMIN: "https://mefolio.s3.eu-north-1.amazonaws.com/projects/admin.webp",
-    WEBSHOP: "https://mefolio.s3.eu-north-1.amazonaws.com/projects/webshop.webp",
-    RESERVATION: "https://mefolio.s3.eu-north-1.amazonaws.com/projects/reservation.webp",
-    MAIN: "https://mefolio.s3.eu-north-1.amazonaws.com/projects/klikit.webp",
+    CLOUD: `${import.meta.env.PUBLIC_CDN_BASE_URL}/projects/cloud.webp`,
+    ADMIN: `${import.meta.env.PUBLIC_CDN_BASE_URL}/projects/admin.webp`,
+    WEBSHOP: `${import.meta.env.PUBLIC_CDN_BASE_URL}/projects/webshop.webp`,
+    RESERVATION: `${import.meta.env.PUBLIC_CDN_BASE_URL}/projects/reservation.webp`,
+    MAIN: `${import.meta.env.PUBLIC_CDN_BASE_URL}/projects/klikit.webp`,
   },
   PATHAO: {
-    FOOD: "https://mefolio.s3.eu-north-1.amazonaws.com/projects/pathaofood.webp",
-    PAYLATER: "https://mefolio.s3.eu-north-1.amazonaws.com/projects/paylater.webp",
-    SHOP: "https://mefolio.s3.eu-north-1.amazonaws.com/projects/pathaoshop.webp",
-    POINTS: "https://mefolio.s3.eu-north-1.amazonaws.com/projects/pathaopoints.webp",
-    MAIN: "https://mefolio.s3.eu-north-1.amazonaws.com/projects/pathao.webp",
+    FOOD: `${import.meta.env.PUBLIC_CDN_BASE_URL}/projects/pathaofood.webp`,
+    PAYLATER: `${import.meta.env.PUBLIC_CDN_BASE_URL}/projects/paylater.webp`,
+    SHOP: `${import.meta.env.PUBLIC_CDN_BASE_URL}/projects/pathaoshop.webp`,
+    POINTS: `${import.meta.env.PUBLIC_CDN_BASE_URL}/projects/pathaopoints.webp`,
+    MAIN: `${import.meta.env.PUBLIC_CDN_BASE_URL}/projects/pathao.webp`,
   },
-  WIDESPACE: "https://mefolio.s3.eu-north-1.amazonaws.com/projects/widespace.webp",
+  WIDESPACE: `${import.meta.env.PUBLIC_CDN_BASE_URL}/projects/widespace.webp`,
   ENOSIS: {
-    ITRAK: "https://mefolio.s3.eu-north-1.amazonaws.com/projects/itrak.webp",
-    IPASS: "https://mefolio.s3.eu-north-1.amazonaws.com/projects/ipass-kiosk.webp",
-    E21: "https://mefolio.s3.eu-north-1.amazonaws.com/projects/e21Mobile.webp",
+    ITRAK: `${import.meta.env.PUBLIC_CDN_BASE_URL}/projects/itrak.webp`,
+    IPASS: `${import.meta.env.PUBLIC_CDN_BASE_URL}/projects/ipass-kiosk.webp`,
+    E21: `${import.meta.env.PUBLIC_CDN_BASE_URL}/projects/e21Mobile.webp`,
   }
 };
 

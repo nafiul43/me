@@ -17,7 +17,7 @@ interface Props {
 const {
   title = "Nafiul Islam Tony - Frontend Lead & Full Stack Engineer",
   description = "Engineering Leader with 13+ years of experience building SaaS platforms and consumer apps. Expert in React, Vue, TypeScript, and modern web technologies. Led teams at klikit and Pathao, shipped products to millions of users.",
-  image = "https://mefolio.s3.eu-north-1.amazonaws.com/Nafiul+Islam+Tony+-+FrontEnd+Lead+Fullstack+Engineer.webp",
+  image = `${import.meta.env.PUBLIC_CDN_BASE_URL}/Nafiul+Islam+Tony+-+FrontEnd+Lead+Fullstack+Engineer.webp`,
   canonical = Astro.url.pathname,
 } = Astro.props;
 
@@ -130,11 +130,8 @@ const structuredData = {
     <meta name="generator" content={Astro.generator} />
 
     <!-- Preconnect to external domains for performance -->
-    <link rel="preconnect" href="https://mefolio.s3.eu-north-1.amazonaws.com" />
-    <link
-      rel="dns-prefetch"
-      href="https://mefolio.s3.eu-north-1.amazonaws.com"
-    />
+    <link rel="preconnect" href={import.meta.env.PUBLIC_CDN_BASE_URL} />
+    <link rel="dns-prefetch" href={import.meta.env.PUBLIC_CDN_BASE_URL} />
 
     <!-- DNS prefetch for Sentry (loaded after page render) -->
     <link

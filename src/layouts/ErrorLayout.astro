@@ -14,7 +14,7 @@ interface Props {
 const {
   title = "404 - Page Not Found | Nafiul Islam Tony",
   description = "The page you're looking for doesn't exist.",
-  image = "https://mefolio.s3.eu-north-1.amazonaws.com/Nafiul+Islam+Tony+-+FrontEnd+Lead+Fullstack+Engineer.webp",
+  image = `${import.meta.env.PUBLIC_CDN_BASE_URL}/Nafiul+Islam+Tony+-+FrontEnd+Lead+Fullstack+Engineer.webp`,
   canonical = Astro.url.pathname,
 } = Astro.props;
 
