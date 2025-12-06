@@ -58,7 +58,7 @@
 # =============================================================================
 # DOCUMENTS - Cache for 1 week
 # =============================================================================
-/resume.pdf
+/Resume.pdf
   Cache-Control: public, max-age=604800
 /*.pdf
   Cache-Control: public, max-age=604800
