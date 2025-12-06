@@ -12,7 +12,7 @@ const { title, subtitle, location, bio, profilePic, links, openTo } =
   slug="profile"
   className="scroll-mt-16 flex flex-col md:flex-row gap-x-0 gap-y-6 md:gap-x-6 lg:gap-y-0"
 >
-  <div class="flex items-center gap-4 sm:flex-row md:flex-col">
+  <div class="flex flex-col items-start lg:items-center gap-4">
     <Image
       format="webp"
       fit="cover"
@@ -23,11 +23,11 @@ const { title, subtitle, location, bio, profilePic, links, openTo } =
       width={320}
       height={320}
       alt={`${title}, ${subtitle}`}
-      class="rounded-lg h-24 max-w-none md:h-52 md:w-52 h-36 w-36"
+      class="rounded-lg h-24 max-w-none md:h-52 md:w-52 h-40 w-40"
     />
     <a
       href="/Resume.pdf"
-      class="w-48 text-sm sm:text-base md:w-full font-medium items-center justify-center active:translate-y-px bg-primary-700 cursor-pointer focus:outline-none h-10 hover:bg-primary-700 inline-flex px-4 rounded-md select-none shadow-sm text-white"
+      class="w-40 md:w-52 text-sm md:text-base font-medium items-center justify-center active:translate-y-px bg-primary-700 cursor-pointer focus:outline-none h-10 hover:bg-primary-700 inline-flex px-4 rounded-md select-none shadow-sm text-white"
       aria-label={`Download ${title}'s Resume PDF`}
       download="Resume of Nafiul Islam Tony.pdf"
       >Download Resume
