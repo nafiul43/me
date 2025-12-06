@@ -14,7 +14,7 @@ interface Props {
 const {
   title = "404 - Page Not Found | Nafiul Islam Tony",
   description = "The page you're looking for doesn't exist.",
-  image = "https://mefolio.s3.eu-north-1.amazonaws.com/Nafiul+Islam+Tony+-+FrontEnd+Lead+Fullstack+Engineer.webp",
+  image = `${import.meta.env.PUBLIC_CDN_BASE_URL}/Nafiul+Islam+Tony+-+FrontEnd+Lead+Fullstack+Engineer.webp`,
   canonical = Astro.url.pathname,
 } = Astro.props;
 
@@ -68,6 +68,24 @@ const canonicalURL = new URL(canonical, siteUrl).href;
 
     <!-- Generator -->
     <meta name="generator" content={Astro.generator} />
+
+    <!-- Theme handling - must be in head to prevent FOUC -->
+    <script is:inline>
+      (function () {
+        const t =
+          (typeof localStorage !== "undefined" &&
+            localStorage.getItem("theme")) ||
+          (window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light");
+        document.documentElement.classList[t === "dark" ? "add" : "remove"](
+          "dark",
+        );
+        try {
+          localStorage.setItem("theme", t);
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body class="bg-gray-50 dark:bg-gray-900">
     <div class="starfield fixed inset-0 z-0 pointer-events-none">
@@ -81,33 +99,45 @@ const canonicalURL = new URL(canonical, siteUrl).href;
       </main>
       <ThemeToggle />
     </div>
+
+    <!-- Lazy-load starfield and 404 CSS after page render -->
+    <script is:inline>
+      if (typeof requestIdleCallback !== "undefined") {
+        requestIdleCallback(function () {
+          var s = document.createElement("link");
+          s.rel = "stylesheet";
+          s.href = "/styles/starfield.css";
+          document.head.appendChild(s);
+          var e = document.createElement("link");
+          e.rel = "stylesheet";
+          e.href = "/styles/404.css";
+          document.head.appendChild(e);
+        });
+      } else {
+        window.addEventListener("load", function () {
+          var s = document.createElement("link");
+          s.rel = "stylesheet";
+          s.href = "/styles/starfield.css";
+          document.head.appendChild(s);
+          var e = document.createElement("link");
+          e.rel = "stylesheet";
+          e.href = "/styles/404.css";
+          document.head.appendChild(e);
+        });
+      }
+    </script>
   </body>
 </html>
 
 <script is:inline>
-  // Theme handling
-  const theme = (() => {
-    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
-      return localStorage.getItem("theme");
+  // Update theme-color meta tag on load
+  document.addEventListener("DOMContentLoaded", function () {
+    const theme = localStorage.getItem("theme") || "light";
+    const themeMeta = document.getElementsByName("theme-color")[0];
+    if (themeMeta) {
+      themeMeta.content = theme === "dark" ? "#1a202c" : "#ffffff";
     }
-    return window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light";
-  })();
-
-  const themeMeta = document.getElementsByName("theme-color");
-
-  if (themeMeta[0]) {
-    themeMeta[0].content = theme === "dark" ? "#1a202c" : "#ffffff";
-  }
-
-  if (theme === "light") {
-    document.documentElement.classList.remove("dark");
-  } else {
-    document.documentElement.classList.add("dark");
-  }
-
-  window.localStorage.setItem("theme", theme);
+  });
 </script>
 
 <style>

@@ -17,7 +17,9 @@ const { title, subtitle, location, bio, profilePic, links, openTo } =
       format="webp"
       fit="cover"
       src={profilePic}
-      loading="eager"
+      loading="lazy"
+      fetchpriority="high"
+      decoding="async"
       width={320}
       height={320}
       alt={`${title}, ${subtitle}`}
@@ -25,7 +27,7 @@ const { title, subtitle, location, bio, profilePic, links, openTo } =
     />
     <a
       href="/resume.pdf"
-      class="w-48 md:w-full font-medium items-center justify-center active:translate-y-px bg-primary-700 cursor-pointer focus:outline-none h-10 hover:bg-primary-700 inline-flex px-4 rounded-md select-none shadow-sm text-base text-white"
+      class="w-48 text-sm sm:text-base md:w-full font-medium items-center justify-center active:translate-y-px bg-primary-700 cursor-pointer focus:outline-none h-10 hover:bg-primary-700 inline-flex px-4 rounded-md select-none shadow-sm text-white"
       aria-label={`Download ${title}'s Resume PDF`}
       download="Resume of Nafiul Islam Tony.pdf"
       >Download Resume

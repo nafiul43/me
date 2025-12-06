@@ -23,7 +23,7 @@ export const JOBS: Job[] = [
     company: "klikit PTE Ltd",
     position: "Lead, Frontend Engineering",
     logo: {
-      src: 'https://mefolio.s3.eu-north-1.amazonaws.com/companies/klikit.webp',
+      src: `${import.meta.env.PUBLIC_CDN_BASE_URL}/companies/klikit.webp`,
     },
     date: "January 2023 - September 2025",
     responsibilities: [
@@ -55,7 +55,7 @@ export const JOBS: Job[] = [
     company: "Pathao Ltd.",
     position: "Staff Software Engineer",
     logo: {
-      src: 'https://mefolio.s3.eu-north-1.amazonaws.com/companies/pathao.webp',
+      src: `${import.meta.env.PUBLIC_CDN_BASE_URL}/companies/pathao.webp`,
     },
     date: "January 2022 - December 2022",
     responsibilities: [
@@ -85,7 +85,7 @@ export const JOBS: Job[] = [
     company: "Pathao Ltd.",
     position: "Senior Software Engineer",
     logo: {
-      src: 'https://mefolio.s3.eu-north-1.amazonaws.com/companies/pathao.webp',
+      src: `${import.meta.env.PUBLIC_CDN_BASE_URL}/companies/pathao.webp`,
     },
     date: "July 2018 - December 2021",
     responsibilities: [
@@ -115,7 +115,7 @@ export const JOBS: Job[] = [
     company: "Widespace Bangladesh Ltd. (Acquired by Azerion AB)",
     position: "Software Engineer",
     logo: {
-      src: 'https://mefolio.s3.eu-north-1.amazonaws.com/companies/widespace.webp',
+      src: `${import.meta.env.PUBLIC_CDN_BASE_URL}/companies/widespace.webp`,
     },
     date: "July 2014 - June 2018",
     responsibilities: [
@@ -145,7 +145,7 @@ export const JOBS: Job[] = [
     company: "Enosis Solutions",
     position: "Software Engineer",
     logo: {
-      src: 'https://mefolio.s3.eu-north-1.amazonaws.com/companies/enosis.webp',
+      src: `${import.meta.env.PUBLIC_CDN_BASE_URL}/companies/enosis.webp`,
     },
     date: "July 2012 - June 2014",
     responsibilities: [
