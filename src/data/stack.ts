@@ -84,7 +84,7 @@ export const LARAVEL = {
 
 export const VUEX = {
   title: "Vuex",
-  icon: "simple-icons:vuex",
+  icon: "simple-icons:vuedotjs",
   color: "#4FC08D",
 };
 
@@ -102,7 +102,7 @@ export const FIREBASE = {
 
 export const HAPI = {
   title: "Hapi",
-  icon: "simple-icons:hapi",
+  icon: "simple-icons:typeorm",
   color: "#C76E00",
 };
 
@@ -402,6 +402,36 @@ export const MODEL_CONTEXT_PROTOCOL = {
   color: "#000000",
 };
 
+export const ELASTICSEARCH = {
+  title: "Elasticsearch",
+  icon: "simple-icons:elasticsearch",
+  color: "#005571",
+};
+
+export const ASTRO = {
+  title: "Astro",
+  icon: "simple-icons:astro",
+  color: "#FF5D01",
+};
+
+export const D3 = {
+  title: "D3",
+  icon: "simple-icons:d3",
+  color: "#F9A03C",
+};
+
+export const CHARTJS = {
+  title: "Chart.js",
+  icon: "simple-icons:chartdotjs",
+  color: "#FF6384",
+};
+
+export const GRAFANA = {
+  title: "Grafana",
+  icon: "simple-icons:grafana",
+  color: "#F46800",
+};
+
 export default {
   REACT,
   VITE,
@@ -465,4 +495,9 @@ export default {
   DEFI,
   SOLANA,
   MODEL_CONTEXT_PROTOCOL,
+  ELASTICSEARCH,
+  ASTRO,
+  D3,
+  CHARTJS,
+  GRAFANA,
 };
