@@ -6,11 +6,10 @@
  * Initialize theme on page load (must be called inline in <head> to prevent FOUC)
  */
 export function initTheme(): void {
+  // Default to dark mode if nothing is set in localStorage
   const theme =
     (typeof localStorage !== "undefined" && localStorage.getItem("theme")) ||
-    (window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light");
+    "dark";
   
   document.documentElement.classList[theme === "dark" ? "add" : "remove"](
     "dark"
@@ -27,7 +26,7 @@ export function initTheme(): void {
  * Update theme-color meta tag based on current theme
  */
 export function updateThemeColor(): void {
-  const theme = localStorage.getItem("theme") || "light";
+  const theme = localStorage.getItem("theme") || "dark";
   const themeMeta = document.querySelector<HTMLMetaElement>(
     'meta[name="theme-color"]'
   );

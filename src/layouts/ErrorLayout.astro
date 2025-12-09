@@ -72,12 +72,11 @@ const canonicalURL = new URL(canonical, siteUrl).href;
     <!-- Theme handling - must be in head to prevent FOUC -->
     <script is:inline>
       (function () {
+        // Default to dark mode if nothing is set in localStorage
         const t =
           (typeof localStorage !== "undefined" &&
             localStorage.getItem("theme")) ||
-          (window.matchMedia("(prefers-color-scheme: dark)").matches
-            ? "dark"
-            : "light");
+          "dark";
         document.documentElement.classList[t === "dark" ? "add" : "remove"](
           "dark",
         );
