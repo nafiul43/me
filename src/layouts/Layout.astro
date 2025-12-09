@@ -71,8 +71,6 @@ const structuredData = {
     "Pathao",
   ],
 };
-
-const measurementId = import.meta.env.GA_MEASUREMENT_ID;
 ---
 
 <!doctype html>
@@ -194,202 +192,33 @@ const measurementId = import.meta.env.GA_MEASUREMENT_ID;
       <ThemeToggle />
     </div>
 
-    <!-- Lazy-load starfield CSS after page render -->
-    <script is:inline>
-      if (typeof requestIdleCallback !== "undefined") {
-        requestIdleCallback(function () {
-          var l = document.createElement("link");
-          l.rel = "stylesheet";
-          l.href = "/styles/starfield.css";
-          document.head.appendChild(l);
-        });
-      } else {
-        window.addEventListener("load", function () {
-          var l = document.createElement("link");
-          l.rel = "stylesheet";
-          l.href = "/styles/starfield.css";
-          document.head.appendChild(l);
-        });
-      }
-    </script>
+    <script>
+      import { loadAnalytics } from "../utils/analytics-loader";
+      import { fixIframeAccessibility } from "../utils/iframe-accessibility";
+      import { lazyLoadStyles } from "../utils/lazy-load-styles";
 
-    <!-- Fix Partytown iframe accessibility -->
-    <script is:inline>
-      // Add title attribute to Partytown iframes for accessibility
-      var observer = new MutationObserver(function (mutations) {
-        mutations.forEach(function (mutation) {
-          mutation.addedNodes.forEach(function (node) {
-            if (node.tagName === "IFRAME" && !node.title) {
-              node.title = "Third-party Analytics Scripts";
-            }
-          });
-        });
-      });
+      // Lazy load starfield CSS
+      lazyLoadStyles(["/styles/starfield.css"]);
 
-      if (typeof MutationObserver !== "undefined") {
-        observer.observe(document.documentElement, {
-          childList: true,
-          subtree: true,
-        });
-      }
-    </script>
+      // Fix iframe accessibility for Partytown
+      fixIframeAccessibility();
 
-    <!-- Lazy-load Google Analytics after page interaction -->
-    <script
-      is:inline
-      define:vars={{ measurementId, isProduction: import.meta.env.PROD }}
-    >
-      (function () {
-        // Only load GA in production environment
-        if (!isProduction) {
-          console.log("[GA] Skipped: Not in production environment");
-          return;
-        }
-
-        var gaLoaded = false;
-
-        function loadGA() {
-          if (gaLoaded) return;
-          gaLoaded = true;
-
-          // Create and inject the GA script
-          var script = document.createElement("script");
-          script.type = "text/partytown";
-          script.src =
-            "https://www.googletagmanager.com/gtag/js?id=" + measurementId;
-          document.head.appendChild(script);
-
-          // Initialize dataLayer and gtag
-          window.dataLayer = window.dataLayer || [];
-          function gtag() {
-            dataLayer.push(arguments);
-          }
-          window.gtag = gtag;
-          gtag("js", new Date());
-          gtag("config", measurementId);
-        }
-
-        // Load GA when browser is idle
-        if (typeof requestIdleCallback !== "undefined") {
-          requestIdleCallback(loadGA, { timeout: 2000 });
-        } else {
-          // Fallback: load after window load event
-          if (document.readyState === "complete") {
-            setTimeout(loadGA, 1000);
-          } else {
-            window.addEventListener("load", function () {
-              setTimeout(loadGA, 1000);
-            });
-          }
-        }
-
-        // Also load on first user interaction for faster tracking
-        var events = ["mousedown", "keydown", "touchstart", "scroll"];
-        var interactionHandler = function () {
-          loadGA();
-          events.forEach(function (event) {
-            document.removeEventListener(event, interactionHandler);
-          });
-        };
-
-        events.forEach(function (event) {
-          document.addEventListener(event, interactionHandler, {
-            once: true,
-            passive: true,
-          });
-        });
-      })();
+      // Load Google Analytics (production only)
+      loadAnalytics(import.meta.env.GA_MEASUREMENT_ID);
     </script>
   </body>
 </html>
 
-<script define:vars={{ validSlugs: VISIBLE_SLUGS }}>
-  // Handle initial load and hash navigation
-  document.addEventListener("DOMContentLoaded", () => {
-    const hash = window.location.hash;
-
-    // Only query if hash exists and is not empty
-    if (hash) {
-      const target = document.querySelector(hash);
-
-      if (target && validSlugs.includes(`#${target.id}`)) {
-        target.scrollIntoView({ behavior: "smooth" });
-        return;
-      }
-    }
-
-    // If no hash is present, scroll to #profile and update URL
-    const profileSection = document.getElementById("profile");
-
-    if (profileSection) {
-      profileSection.scrollIntoView({ behavior: "smooth" });
-      history.replaceState(null, "", "#profile");
-    }
-
-    // Update theme-color meta tag
-    const theme = localStorage.getItem("theme") || "light";
-    const themeMeta = document.getElementsByName("theme-color")[0];
-    if (themeMeta) {
-      themeMeta.content = theme === "dark" ? "#1a202c" : "#ffffff";
-    }
-  });
-</script>
-
 <script>
-  // Declare gtag function type
-  declare global {
-    function gtag(...args: any[]): void;
-  }
+  import { VISIBLE_SLUGS } from "../data/index";
+  import { initHashNavigation } from "../utils/hash-navigation";
+  import { trackSections } from "../utils/section-tracker";
 
-  // Only track sections in production
-  if (import.meta.env.PROD) {
-    // Wait for the window to load
-    window.addEventListener("load", () => {
-      // Define sections as checkpoints
-      const sections = [
-        "profile",
-        "experience",
-        "education",
-        "projects",
-        "skills",
-      ];
-      const trackedSections = new Set<string>();
+  // Handle initial load and hash navigation
+  initHashNavigation(VISIBLE_SLUGS);
 
-      // Create IntersectionObserver to track when sections come into view
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            const sectionId = entry.target.id;
-
-            // Track section when it becomes visible (1% threshold)
-            if (entry.isIntersecting && !trackedSections.has(sectionId)) {
-              trackedSections.add(sectionId);
-
-              if (typeof gtag !== "undefined") {
-                gtag("event", "section_view", {
-                  event_category: "Engagement",
-                  event_label: sectionId,
-                  value: sections.indexOf(sectionId) + 1,
-                });
-              }
-            }
-          });
-        },
-        {
-          threshold: 0.01, // Trigger when 1% of the section is visible
-          rootMargin: "0px",
-        },
-      );
-
-      // Observe each section
-      sections.forEach((sectionId) => {
-        const section = document.getElementById(sectionId);
-        if (section) {
-          observer.observe(section);
-        }
-      });
-    });
-  }
+  // Track section visibility (production only)
+  trackSections(["profile", "experience", "education", "projects", "skills"]);
 </script>
 
 <style>
