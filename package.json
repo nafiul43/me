@@ -1,7 +1,7 @@
 {
   "name": "me",
   "type": "module",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "scripts": {
     "dev": "astro dev",
     "build": "astro check && astro build",
@@ -10,6 +10,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/partytown": "^2.1.4",
     "@fontsource/material-icons": "^5.2.7",
     "@sentry/astro": "^10.27.0",
     "astro": "^5.15.3",

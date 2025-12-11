@@ -163,12 +163,11 @@ const structuredData = {
     <!-- Theme handling - must be in head to prevent FOUC -->
     <script is:inline>
       (function () {
+        // Default to dark mode if nothing is set in localStorage
         const t =
           (typeof localStorage !== "undefined" &&
             localStorage.getItem("theme")) ||
-          (window.matchMedia("(prefers-color-scheme: dark)").matches
-            ? "dark"
-            : "light");
+          "dark";
         document.documentElement.classList[t === "dark" ? "add" : "remove"](
           "dark",
         );
@@ -192,51 +191,33 @@ const structuredData = {
       <ThemeToggle />
     </div>
 
-    <!-- Lazy-load starfield CSS after page render -->
-    <script is:inline>
-      if (typeof requestIdleCallback !== "undefined") {
-        requestIdleCallback(function () {
-          var l = document.createElement("link");
-          l.rel = "stylesheet";
-          l.href = "/styles/starfield.css";
-          document.head.appendChild(l);
-        });
-      } else {
-        window.addEventListener("load", function () {
-          var l = document.createElement("link");
-          l.rel = "stylesheet";
-          l.href = "/styles/starfield.css";
-          document.head.appendChild(l);
-        });
-      }
+    <script>
+      import { loadAnalytics } from "../utils/analytics-loader";
+      import { fixIframeAccessibility } from "../utils/iframe-accessibility";
+      import { lazyLoadStyles } from "../utils/lazy-load-styles";
+
+      // Lazy load starfield CSS
+      lazyLoadStyles(["/styles/starfield.css"]);
+
+      // Fix iframe accessibility for Partytown
+      fixIframeAccessibility();
+
+      // Load Google Analytics (production only)
+      loadAnalytics(import.meta.env.GA_MEASUREMENT_ID);
     </script>
   </body>
 </html>
 
-<script define:vars={{ validSlugs: VISIBLE_SLUGS }}>
+<script>
+  import { VISIBLE_SLUGS } from "../data/index";
+  import { initHashNavigation } from "../utils/hash-navigation";
+  import { trackSections } from "../utils/section-tracker";
+
   // Handle initial load and hash navigation
-  document.addEventListener("DOMContentLoaded", () => {
-    const target = document.querySelector(window.location.hash);
+  initHashNavigation(VISIBLE_SLUGS);
 
-    if (target && validSlugs.includes(`#${target.id}`)) {
-      target.scrollIntoView({ behavior: "smooth" });
-      return;
-    }
-    // If no hash is present, scroll to #profile and update URL
-    const profileSection = document.getElementById("profile");
-
-    if (profileSection) {
-      profileSection.scrollIntoView({ behavior: "smooth" });
-      history.replaceState(null, "", "#profile");
-    }
-
-    // Update theme-color meta tag
-    const theme = localStorage.getItem("theme") || "light";
-    const themeMeta = document.getElementsByName("theme-color")[0];
-    if (themeMeta) {
-      themeMeta.content = theme === "dark" ? "#1a202c" : "#ffffff";
-    }
-  });
+  // Track section visibility (production only)
+  trackSections(["profile", "experience", "education", "projects", "skills"]);
 </script>
 
 <style>

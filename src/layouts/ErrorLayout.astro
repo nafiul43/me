@@ -72,12 +72,11 @@ const canonicalURL = new URL(canonical, siteUrl).href;
     <!-- Theme handling - must be in head to prevent FOUC -->
     <script is:inline>
       (function () {
+        // Default to dark mode if nothing is set in localStorage
         const t =
           (typeof localStorage !== "undefined" &&
             localStorage.getItem("theme")) ||
-          (window.matchMedia("(prefers-color-scheme: dark)").matches
-            ? "dark"
-            : "light");
+          "dark";
         document.documentElement.classList[t === "dark" ? "add" : "remove"](
           "dark",
         );
@@ -100,53 +99,28 @@ const canonicalURL = new URL(canonical, siteUrl).href;
       <ThemeToggle />
     </div>
 
-    <!-- Lazy-load starfield and 404 CSS after page render -->
-    <script is:inline>
-      if (typeof requestIdleCallback !== "undefined") {
-        requestIdleCallback(function () {
-          var s = document.createElement("link");
-          s.rel = "stylesheet";
-          s.href = "/styles/starfield.css";
-          document.head.appendChild(s);
-          var e = document.createElement("link");
-          e.rel = "stylesheet";
-          e.href = "/styles/404.css";
-          document.head.appendChild(e);
-        });
-      } else {
-        window.addEventListener("load", function () {
-          var s = document.createElement("link");
-          s.rel = "stylesheet";
-          s.href = "/styles/starfield.css";
-          document.head.appendChild(s);
-          var e = document.createElement("link");
-          e.rel = "stylesheet";
-          e.href = "/styles/404.css";
-          document.head.appendChild(e);
-        });
-      }
+    <script>
+      import { updateThemeColor } from "../utils/init-theme";
+      import { lazyLoadStyles } from "../utils/lazy-load-styles";
+
+      // Lazy load CSS files
+      lazyLoadStyles(["/styles/starfield.css", "/styles/404.css"]);
+
+      // Update theme-color meta tag
+      document.addEventListener("DOMContentLoaded", () => {
+        updateThemeColor();
+      });
     </script>
+
+    <style>
+      html,
+      body {
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        font-family: Inter, "Helvetica Neue", "Arial Nova", "Nimbus Sans", Arial,
+          sans-serif;
+      }
+    </style>
   </body>
 </html>
-
-<script is:inline>
-  // Update theme-color meta tag on load
-  document.addEventListener("DOMContentLoaded", function () {
-    const theme = localStorage.getItem("theme") || "light";
-    const themeMeta = document.getElementsByName("theme-color")[0];
-    if (themeMeta) {
-      themeMeta.content = theme === "dark" ? "#1a202c" : "#ffffff";
-    }
-  });
-</script>
-
-<style>
-  html,
-  body {
-    margin: 0;
-    width: 100%;
-    height: 100%;
-    font-family: Inter, "Helvetica Neue", "Arial Nova", "Nimbus Sans", Arial,
-      sans-serif;
-  }
-</style>

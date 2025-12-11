@@ -8,20 +8,23 @@ import icon from "astro-icon";
 
 import sentry from "@sentry/astro";
 
+import partytown from "@astrojs/partytown";
+
 // https://astro.build/config
 export default defineConfig({
   site: "https://nafiulislam.site",
-  integrations: [
-    icon(),
-    sitemap({
-      changefreq: "weekly",
-      priority: 0.7,
-      lastmod: new Date(),
-    }),
-    sentry({
-      project: "javascript-astro",
-      org: "nafiulislamtony",
-      authToken: process.env.SENTRY_AUTH_TOKEN,
+  integrations: [icon(), sitemap({
+    changefreq: "weekly",
+    priority: 0.7,
+    lastmod: new Date(),
+  }), sentry({
+    project: "javascript-astro",
+    org: "nafiulislamtony",
+    authToken: process.env.SENTRY_AUTH_TOKEN,
+  }), partytown({
+      config: {
+        forward: ["dataLayer.push"],
+      },
     })],
   vite: {
     plugins: [tailwindcss()],
