@@ -1,10 +1,13 @@
+const CDN = import.meta.env.PUBLIC_CDN_BASE_URL;
+
 export const ABOUT = {
   title: "Nafiul Islam Tony",
   subtitle: "Frontend Lead & Full Stack Engineer",
   location: "Dhaka, Bangladesh",
   bio: "13+ Yrs Senior/Lead Frontend Engineer. React, Vue, TypeScript, Next.js. I have helped companies in building high-load robust user-friendly applications and design systems that ship faster. Scaled consumer features to millions and led engineering teams at top startups like klikit and Pathao. Speed, stability, and high performance are my default settings",
-  profilePic: `${import.meta.env.PUBLIC_CDN_BASE_URL}/Nafiul+Islam+Tony+-+FrontEnd+Lead+Fullstack+Engineer.webp`,
-  resume: `${import.meta.env.PUBLIC_CDN_BASE_URL}/resume/Nafiul+Islam+Tony.pdf`,
+  profilePic: `${CDN}/Nafiul-Islam-Tony-208w.webp`,
+  profilePicSrcset: `${CDN}/Nafiul-Islam-Tony-208w.webp 1x, ${CDN}/Nafiul-Islam-Tony-416w.webp 2x`,
+  resume: `${CDN}/resume/Nafiul+Islam+Tony.pdf`,
   links: [
     {
       slug: "phone",
