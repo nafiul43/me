@@ -203,7 +203,7 @@ const structuredData = {
       fixIframeAccessibility();
 
       // Load Google Analytics (production only)
-      loadAnalytics(import.meta.env.GA_MEASUREMENT_ID);
+      loadAnalytics(import.meta.env.PUBLIC_GA_MEASUREMENT_ID);
     </script>
   </body>
 </html>
@@ -226,7 +226,7 @@ const structuredData = {
     margin: 0;
     width: 100%;
     height: 100%;
-    font-family: Inter, "Helvetica Neue", "Arial Nova", "Nimbus Sans", Arial,
-      sans-serif;
+    font-family:
+      Inter, "Helvetica Neue", "Arial Nova", "Nimbus Sans", Arial, sans-serif;
   }
 </style>
