@@ -29,7 +29,7 @@ export default defineConfig({
     authToken: process.env.SENTRY_AUTH_TOKEN,
   }), partytown({
       config: {
-        forward: ["dataLayer.push"],
+        forward: ["dataLayer.push", "gtag"],
       },
     })],
   vite: {
@@ -37,6 +37,7 @@ export default defineConfig({
     build: {
       sourcemap: false,
       minify: 'terser',
+      target: 'es2022',
       terserOptions: {
         compress: {
           drop_console: true,
