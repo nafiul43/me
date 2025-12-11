@@ -13,7 +13,13 @@ import partytown from "@astrojs/partytown";
 // https://astro.build/config
 export default defineConfig({
   site: "https://nafiulislam.site",
-  integrations: [icon(), sitemap({
+  integrations: [icon({
+    include: {
+      mdi: ['*'],  // Only if needed
+      'simple-icons': ['*'],  // Only if needed  
+      logos: ['*'],  // Only if needed
+    },
+  }), sitemap({
     changefreq: "weekly",
     priority: 0.7,
     lastmod: new Date(),
@@ -30,10 +36,16 @@ export default defineConfig({
     plugins: [tailwindcss()],
     build: {
       sourcemap: false,
-      minify: 'esbuild',
+      minify: 'terser',
+      terserOptions: {
+        compress: {
+          drop_console: true,
+          drop_debugger: true,
+          pure_funcs: ['console.log', 'console.info'],
+        },
+      },
     }
   },
-  
   // Optimize build
   build: {
     inlineStylesheets: "auto",
