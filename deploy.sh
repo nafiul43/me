@@ -41,6 +41,7 @@ aws s3 sync $DIST_DIR s3://$BUCKET_NAME \
     --exclude "*" \
     --include "_astro/*" \
     --include "fonts/*" \
+    --include "styles/*" \
     --include "*.png" \
     --include "*.jpg" \
     --include "*.jpeg" \
