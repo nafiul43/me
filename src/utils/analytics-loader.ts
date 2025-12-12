@@ -21,7 +21,6 @@ export function loadAnalytics(measurementId: string): void {
 
     // Create and inject the GA script
     const script = document.createElement("script");
-    script.type = "text/partytown";
     script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
     document.head.appendChild(script);
 
