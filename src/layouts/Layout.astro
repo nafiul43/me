@@ -192,9 +192,12 @@ const structuredData = {
     </div>
 
     <script>
+      import { VISIBLE_SLUGS } from "../data/index";
       import { loadAnalytics } from "../utils/analytics-loader";
+      import { initHashNavigation } from "../utils/hash-navigation";
       import { fixIframeAccessibility } from "../utils/iframe-accessibility";
       import { lazyLoadStyles } from "../utils/lazy-load-styles";
+      import { trackSections } from "../utils/section-tracker";
 
       // Lazy load starfield CSS
       lazyLoadStyles(["/styles/starfield.css"]);
@@ -204,21 +207,21 @@ const structuredData = {
 
       // Load Google Analytics (production only)
       loadAnalytics(import.meta.env.PUBLIC_GA_MEASUREMENT_ID);
+
+      // Handle initial load and hash navigation
+      initHashNavigation(VISIBLE_SLUGS);
+
+      // Track section visibility (production only)
+      trackSections([
+        "profile",
+        "experience",
+        "education",
+        "projects",
+        "skills",
+      ]);
     </script>
   </body>
 </html>
-
-<script>
-  import { VISIBLE_SLUGS } from "../data/index";
-  import { initHashNavigation } from "../utils/hash-navigation";
-  import { trackSections } from "../utils/section-tracker";
-
-  // Handle initial load and hash navigation
-  initHashNavigation(VISIBLE_SLUGS);
-
-  // Track section visibility (production only)
-  trackSections(["profile", "experience", "education", "projects", "skills"]);
-</script>
 
 <style>
   html,
